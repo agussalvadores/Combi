@@ -18,9 +18,13 @@
     	<td><%= chof.nombre %></td> 
     	<td><%= chof.apellido %></td>
     	<td><%= chof.email %></td>
+      <td><%= chof.fecha_de_nacimiento.strftime("%d-%m-%Y")%></td>
     	<td>
-    	 <%= link_to "Editar",  edit_chofer_path(chof) %>
-       <%= link_to "Eliminar", chof , method: :delete, data:{confirm:"Desea eliminar este usuario?" }%>
+    	 <%= link_to "Editar", edit_chofer_path(chof.id) %>
+       <%= link_to "Mostrar", show_chofer_path(chof.id) %>
+       <%= link_to "Eliminar", destroy_chofer_path(chof.id) , method: :delete, data:{confirm:"Desea eliminar este usuario?" }%>
+       
+      </div>
        <% end %>
     	</td>
   	</tr>

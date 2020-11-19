@@ -1,39 +1,46 @@
-<h2>Editar </h2>
-
-<%= form_for :chofer do |f| %>
-
+<%= form_for @chofer, :url => { :action => :update } do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",required:true,placeholder:"email" %>
+    </div>
+     <div class="field">
+      <%= f.label :nombre, "Nombre"%><br />
+      <%= f.text_field :nombre,required: true, placeholder: "Nombre" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :apellido, "Apellido" %><br />
+      <%= f.text_field :apellido,required: true, placeholder: "apellido" %>
+    </div>
+    <div class="field">
+      <%= f.label :dni,"Documento" %><br />
+      <%= f.text_field :dni,required: true, placeholder: "DNI" %>
+    </div>
+    <div class="field">
+      <%= f.label :fecha_de_nacimiento,"Fecha de nacimiento" %><br />
+      <%= f.date_field :fecha_de_nacimiento %>
+    </div>
+
+    <div class="field">
+      <%= f.label :celular,"Numero de celular" %><br />
+      <%= f.text_field :celular,required: true, placeholder: "celular" %>
+    </div>
+     <div class="field">
+      <%= f.label :contraseña,"Contraseña" %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> Caracteres minimos)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password",required: true,placeholder: "contraseña" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation,"Confirmar contraseña" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password",required: true, placeholder: "Confirmar contraseña" %>
+    </div>
 
 
-  <div class="field">
-    <%= f.label :contraseña %> <i>
-      
-    </i><br />
-    <%= f.password_field :contraseña, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+    <div class="Actions">
+      <%= f.submit "Guardar cambios"%>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :contraseña_actual %> <i>
-      
-    </i><br />
-    <%= f.password_field :contraseña_actual, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Actualizar"%>
-  </div>
-<% end %>
-
-<%= link_to "Atrás", :back %>
+<%end%>

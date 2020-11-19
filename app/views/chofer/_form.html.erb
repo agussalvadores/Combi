@@ -1,0 +1,47 @@
+<%= form_for @chofer, :url => { :action => :create } do |f| %>
+	<div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",required:true,placeholder:"email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :contraseña %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> caracteres minimos)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password",required: true,placeholder: "contraseña" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :Confirmar_contraseña %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password",required: true, placeholder: "Confirmar contraseña" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :Ingrese_su_nombre %><br />
+      <%= f.text_field :nombre,required: true, placeholder: "Nombre" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :Ingrese_su_apellido %><br />
+      <%= f.text_field :apellido,required: true, placeholder: "apellido" %>
+    </div>
+    <div class="field">
+      <%= f.label :Ingrese_su_DNI %><br />
+      <%= f.text_field :dni,required: true, placeholder: "DNI" %>
+    </div>
+    <div class="field">
+      <%= f.label :fecha_de_nacimiento %><br />
+      <%= f.date_field :fecha_de_nacimiento %>
+    </div>
+
+    <div class="field">
+      <%= f.label :Ingrese_su_celular %><br />
+      <%= f.text_field :celular,required: true, placeholder: "celular" %>
+    </div>
+
+    <div class="Actions">
+    	<%= f.submit "Registro de chofer"%>
+    </div>
+
+<%end%>

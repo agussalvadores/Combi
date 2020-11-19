@@ -1,3 +1,13 @@
 <% if user_signed_in? %>
-<h1>Bienvenido  <%=current_user.nombre %> </h1>
+	<h1>Bienvenido  <%=current_user.nombre %> </h1>
+	<% if current_user && current_user.role == "admin" %>
+		<%= link_to 'Administrar Choferes', chofer_index_path %><br />
+
+		<%= link_to 'Administrar Combis'%> <br />
+
+
+		<%= link_to 'Administrar Viajes' %><br />
+
+	<%end%>
+
 <% end %>

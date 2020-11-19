@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Chofer2sControllerTest < ActionDispatch::IntegrationTest
+class AdminsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

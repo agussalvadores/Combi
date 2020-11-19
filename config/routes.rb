@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  resources :chofer2s
   devise_for :users
+  resources :users, only: [:new, :create, :show,:edit,:delete]
+
   root to: "home#index"
-  get '/chofer', to: 'chofer#index'
-end
+
+  resources :chofer  
+ 
+ 
+  end
+ 
+  

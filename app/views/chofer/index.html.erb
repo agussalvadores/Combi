@@ -1,0 +1,39 @@
+<%if current_user && current_user.role == "admin"%>
+	<h1>Listado de Choferes</h1>
+	<%= link_to "Agregar Chofer", new_chofer_path %>
+  <div class="container-fluid">
+  <table class="table">
+  <thead class="thead-dark">
+  <tr align="center">
+	    <thead>
+  	    <th>Nombre</th> <br />
+	  	  <th>Apellido</th>
+    	  <th>Email</th>
+        <th colspan="3"></th>
+  	</tr>
+    </thead>
+  <% @choferes.each do |chof| %>
+   <% if chof.role == "chofer" %> <br/>
+  	<tr>
+    	<td><%= chof.nombre %></td> 
+    	<td><%= chof.apellido %></td>
+    	<td><%= chof.email %></td>
+    	<td>
+    	 <%= link_to "Editar",  edit_chofer_path(chof) %>
+       <%= link_to "Eliminar", chof , method: :delete, data:{confirm:"Desea eliminar este usuario?" }%>
+       <% end %>
+    	</td>
+  	</tr>
+    <% end %>
+    </table>
+   
+ <%else%>
+	<div class="alert alert-danger">
+	"No tienes acceso suficiente"
+	</div>
+<%end%>
+<br/> <%= link_to "Atrás", :back %>
+
+
+
+  

@@ -1,0 +1,43 @@
+<%if current_user && current_user.role == "admin"%>
+	<h1> Listado de viajes</h1>
+
+ <%= link_to "Agregar nuevo viaje", viajes_new_path %>
+ 	<div class="container-fluid">
+ 	<table class="table">
+ 	<thead class="thead-dark">
+ 	<tr align="center">	
+
+		<thead>
+			<th> Origen </th>
+			<th> Destino </th>
+			<th> Salida </th>
+			<th> Llegada </th>
+			<th> Precio </th>
+			<th> Pasajes </th>
+			<th> Combi </th>
+			<th> Chofer </th>
+			<th colspan="9"></th>
+	</thead>
+	<% @viajes.each do |viaje| %>
+	<tr>
+		<td><%= viaje.origen %></td>
+		<td><%= viaje.destino %></td>
+		<td><%= viaje.hor_salida %></td>
+		<td><%= viaje.hor_llegada %></td>
+		<td><%= viaje.precio %></td>
+		<td><%= viaje.cant_pasajes %></td>
+		<td><%= viaje.combi %></td>
+		<td><%= viaje.chofer %></td>
+		<td>
+		<%= link_to "Editar", edit_viaje_path(viaje) %>
+		<%= link_to "Eliminar", viaje, method: :delete, data: { confirm: "¿Seguro que desea eliminar el viaje?"}%>	
+	</div>		
+	</td>
+	</tr>
+	<% end %>
+<%else%>
+<div class="alert alert-danger">
+	"No tienes acceso suficiente"
+	</div>
+<%end%>
+<br/> <%= link_to "Atrás", :back %>

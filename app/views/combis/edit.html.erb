@@ -1,0 +1,22 @@
+<%= form_for @combi do |f| %>
+
+<div>
+	<%= f.label :patente %>
+	<%= f.text_field :patente %>
+</div>
+<div>
+	<%= f.label :tipo %>
+	<%= f.text_field :tipo %>
+</div>
+<div>
+	<%= f.label :cant_asientos %>
+	<%= f.number_field :cant_asientos %>
+</div>
+<div>
+	<%= f.label :descripcion %>
+	<%= f.text_area :descripcion %>
+</div>
+<div>
+	<%= f.submit %>
+</div>
+<% end %>

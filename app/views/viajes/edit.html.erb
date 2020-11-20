@@ -1,0 +1,38 @@
+<%= form_for @viaje do |f| %>
+
+<div>
+	<%= f.label :origen %>
+	<%= f.text_field :origen %>
+</div>
+<div>
+	<%= f.label :destino %>
+	<%= f.text_field :destino %>
+</div>
+<div>
+	<%= f.label :hor_salida %>
+	<%= f.text_field :hor_salida %>
+</div>
+<div>
+	<%= f.label :hor_llegada %>
+	<%= f.text_field :hor_llegada %>
+</div>
+<div>
+	<%= f.label :precio %>
+	<%= f.number_field :precio %>
+</div>
+<div>
+	<%= f.label :cant_pasajes %>
+	<%= f.number_field :cant_pasajes %>
+</div>
+<div>
+	<%= f.label :combi %>
+	<%= f.text_field :combi %>
+</div>
+<div>
+	<%= f.label :chofer %>
+	<%= f.text_field :chofer %>
+</div>
+<div>
+	<%= f.submit %>
+</div>
+<% end %>

@@ -1,19 +1,19 @@
-<%= form_for @combi do |f| %>
+<%= form_for @combi, :url => { :action => :create }  do |f| %>
 
 <div>
-	<%= f.label :patente %>
-	<%= f.text_field :patente %>
+	<%= f.label :patente,"Patente" %>
+	<%= f.text_field :patente,required: true %>
 </div>
 <div>
-	<%= f.label :tipo %>
-	<%= f.text_field :tipo %>
+	<%= f.label :tipo, "Tipo de asiento" %>
+	<%= f.text_field :tipo,required: true %>
 </div>
 <div>
-	<%= f.label :cant_asientos %>
-	<%= f.number_field :cant_asientos %>
+	<%= f.label :cant_asientos,"Cantidad de asientos" %>
+	<%= f.number_field :cant_asientos,required: true %>
 </div>
 <div>
-	<%= f.label :descripcion %>
+	<%= f.label :descripcion,"Descripción" %>
 	<%= f.text_area :descripcion %>
 </div>
 <div>

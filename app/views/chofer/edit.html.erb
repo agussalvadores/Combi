@@ -25,6 +25,7 @@
       <%= f.label :celular,"Numero de celular" %><br />
       <%= f.text_field :celular,required: true, placeholder: "celular" %>
     </div>
+    <%if current_user && current_user.role == "chofer"%>
      <div class="field">
       <%= f.label :contraseña,"Contraseña" %>
       <% if @minimum_password_length %>
@@ -32,12 +33,13 @@
       <% end %><br />
       <%= f.password_field :password, autocomplete: "new-password",required: true,placeholder: "contraseña" %>
     </div>
-
     <div class="field">
       <%= f.label :password_confirmation,"Confirmar contraseña" %><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password",required: true, placeholder: "Confirmar contraseña" %>
     </div>
 
+    <%end%>
+    
 
     <div class="Actions">
       <%= f.submit "Guardar cambios"%>

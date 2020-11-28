@@ -4,12 +4,12 @@ class CombisController < ApplicationController
 	end
 	
 	def new
-		@combi =Combi.new
+		@combi = Combi.new
 	end
 
 	def create
-		@combi =Combi.create(combi_parametros)
-		if @combi.save
+		@combi = Combi.create(combi_parametros)
+		if @combi.save!
 			redirect_to combis_path, notice: "Combi creada correctamente"
 		else
 			render :new
@@ -30,7 +30,6 @@ class CombisController < ApplicationController
 	end
 
 	def delete
-		@combi.deleted_at=Date.today
 		@combi = Combi.find(params[:id])
 		@combi.destroy
 		redirect_to combis_path, notice: "Combi eliminada correctamente"
@@ -38,7 +37,7 @@ class CombisController < ApplicationController
 	
 	private
 		def combi_parametros
-			params.require(:combi).permit(:patente, :tipo, :cant_asientos, :descripcion)
+			params.require(:combi).permit([:patente, :tipo, :cant_asientos, :descripcion])
 		end
 end
 

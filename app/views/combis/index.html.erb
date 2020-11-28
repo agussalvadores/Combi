@@ -1,11 +1,9 @@
 <%if current_user && current_user.role == "admin"%>
 	<h1> Listado de combis</h1>
-	<%= link_to "Agregar nueva combi", combis_new_path %>	
 	  <div class="container-fluid">
   	  <table class="table">
   	  <thead class="thead-dark">
   	  <tr align="center">
-
 		<thead>
 			<th> Patente </th>
 			<th> Tipo </th>
@@ -13,6 +11,7 @@
 			<th> Descripcion </th>
 			<th colspan=4></th>
 		</thead>
+	</tr>
 	<% @combis.each do |combi| %>
 	<tr>
 		<td><%= combi.patente %></td>
@@ -20,11 +19,12 @@
 		<td><%= combi.cant_asientos %></td>
 		<td><%= combi.descripcion %></td>
 		<td>
-		<%= link_to "Editar", edit_combi_path(combi) %>
+		<%= link_to "Editar", edit_combi_path(combi.id) %>
 		<%= link_to "Eliminar", combi, method: :delete, data: { confirm: "¿Seguro que desea eliminar la combi?"}%>	
 		</td>
 	</tr>
 	<% end %>
+	</table>
 
 
  <%else%>
@@ -32,4 +32,5 @@
 	"No tienes acceso suficiente"
 	</div>
 <%end%>
-<br/> <%= link_to "Atrás", :back %>
+<%= link_to "Agregar nueva combi", combis_new_path %>	
+<br /><%= link_to "Atrás", :back %>

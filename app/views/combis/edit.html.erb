@@ -1,22 +1,22 @@
-<%= form_for @combi do |f| %>
-
-<div>
-	<%= f.label :patente %>
-	<%= f.text_field :patente %>
+<%= form_for @combi, :url => { :action => :update } do |f| %>
+ <div class="field">
+  <%= f.label :patente,"Patente" %><br />
+  <%= f.text_field :patente,required: true %>
 </div>
-<div>
-	<%= f.label :tipo %>
-	<%= f.text_field :tipo %>
+ <%= f.label :tipo,"Tipo de asiento" %><br />
+ <%= f.select :tipo,
+       options_for_select(Combi.tipos) %>
+    
+   <div class="field">
+   <%= f.label :cant_asientos, "Cantidad de asientos" %><br />
+  <%= f.number_field :cant_asientos, required: true %>
 </div>
-<div>
-	<%= f.label :cant_asientos %>
-	<%= f.number_field :cant_asientos %>
+<div class="field">
+ <%= f.label :descripcion,"Descripción" %><br />
+  <%= f.text_area :descripcion, required: true %>
 </div>
-<div>
-	<%= f.label :descripcion %>
-	<%= f.text_area :descripcion %>
-</div>
-<div>
-	<%= f.submit %>
+<div class="Actions">
+  <%= f.submit "Guardar cambios"%>
 </div>
 <% end %>
+<%=link_to "Atrás", :back %>

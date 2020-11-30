@@ -1,44 +1,78 @@
+<center>
+<div class="centro">
 <h2>Modificar Perfil</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put}) do |f| %>
+<%= render "devise/shared/error_messages", resource: resource %>
     <div class="field">
      <%= f.label :nombre,"Nombre" %><br />
-      <%= f.text_field :nombre,autofocus: true%>
+      <%= f.text_field :nombre,autofocus: true, autocomplete: "nombre"%>
     </div>
 
     <div class="field">
       <%= f.label :apellido,"Apellido" %><br />
-      <%= f.text_field :apellido %>
+      <%= f.text_field :apellido,autofocus: true,autocomplete: "apellido" %>
     </div>
 
     <div class="field">
-      <%= f.label :fecha_de_nacimiento %><br />
-      <%= f.date_field :fecha_de_nacimiento %>
+      <%= f.label :fecha_de_nacimiento,"Fecha de nacimiento" %><br />
+      <%= f.date_field :fecha_de_nacimiento, autofocus: true,autocomplete: "fecha_de_nacimiento" %>
     </div>
 
     <div class="field">
-      <%= f.label :email %><br />
+      <%= f.label :email,"Email" %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-
     <div class="field">
-      <%= f.label :contraseña %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> caracteres minimos)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.label :dni,"Numero de documento" %><br />
+    <%= f.text_field :dni, autofocus: true, autocomplete: "dni" %>
     </div>
-
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+  <div class="field">
+      <%= f.label "No es obligatorio cambiar la contraseña"%><br />
+      <%= f.label :contraseña ,"Contraseña" %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> Caracteres minimos)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password"%>
+    </div>
     <div class="field">
-      <%= f.label :password_confirmation,"Confirmar Contraseña" %><br />
+      <%= f.label :password_confirmation,"Confirmar contraseña" %><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
+    
+    <div class="field">
+      <%= f.label :celular,"Numero de celular" %><br />
+      <%= f.text_field :celular,autofocus: true ,autocomplete: "celular" %>
+    </div>
+    <%if current_user && current_user.role == "pasajero"%>
+      <div><h3>Tarjeta de credito (Opcional)</h3></div>
+      <div class="field">
+      <%= f.label "Numero de tarjeta (16 digitos)" %><br />
+      <%= f.text_field :card, placeholder: 'Ingrese el numero de tarjeta' %>
+      </div>
 
-    <br />
+      <div class="field">
+      <%= f.label "Vencimiento:" %><br />
+      <%= f.select :vencimientoMes, [1,2,3,4,5,6,7,8,9,10,11,12] %>
+      <%= f.select :vencimientoAño, [2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030] %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Actualizar"%>
+      <div class="field">
+      <%= f.label "Codigo de seguridad (3 digitos)" %><br />
+      <%= f.text_field :cods, placeholder: 'Los tres digitos detras de la tarjeta' %>
+      </div>
+    <%end%>
+  <div class="field">
+    <%= f.label :current_password %> <i>(Ingrese su contrasena para confirmar los cambios)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
+    <div class="actions">
+    <%= f.submit "Actualizar", class: ' btn btn-outline-info'%>
+    </div>
 <% end %>
+</center>
+<%= button_to "Eliminar cuenta", registration_path(resource_name), data: { confirm: "Estas seguro de eliminar permanentemente tu cuenta del sistema?" }, method: :delete %></p>
 
-<%= link_to "Atrás", :back %>
+<br /><%= link_to "Atrás",:back %>

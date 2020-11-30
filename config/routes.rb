@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :users, only: [:new, :create, :show,:edit,:delete]
+   devise_for :users, controllers: {
+        sessions: 'users/sessions' , registrations: 'users/registrations' , passwords: 'users/passwords',
+      }
 
+  
+  resources :users
   root to: "home#index"
-
+  get 'home/index'
   resources :chofer
   get '/chofer/index', to: 'chofer#index'
   get '/chofer/new', to: 'chofer#new'

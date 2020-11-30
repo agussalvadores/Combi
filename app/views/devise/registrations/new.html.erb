@@ -4,20 +4,18 @@
     <h2><font color="black"> Registrarse </font></h2>
      <%= f.label :nombre,"Nombre" %><br />
       <%= f.text_field :nombre,autofocus: true,required: true%>
-    </div>
-
     <div class="field">
       <%= f.label :apellido, "Apellido" %><br />
-      <%= f.text_field :apellido,required: true %>
+      <%= f.text_field :apellido,required: true,autofocus: true %>
     </div>
 
     <div class="field">
       <%= f.label :fecha_de_nacimiento,"Fecha de nacimiento " %><br />
-      <%= f.date_field :fecha_de_nacimiento,required: true %>
+      <%= f.date_field :fecha_de_nacimiento,required: true,autofocus: true %>
     </div>
     <div class="field">
       <%= f.label :dni,"Ingrese su Documento" %><br />
-      <%= f.text_field :dni,required: true%>
+      <%= f.text_field :dni,required: true,autofocus: true,autocomplete: "dni"%>
     </div>
 
     <div class="field">
@@ -35,7 +33,7 @@
 
     <div class="field">
       <%= f.label :confirmar_contraseña %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <%= f.password_field :password_confirmation, required: true,autocomplete: "new-password" %>
     </div>
 
     <br />

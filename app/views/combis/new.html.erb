@@ -5,9 +5,10 @@
 	<%= f.text_field :patente,required: true %>
 </div>
 <div>
-	<%= f.label :tipo, "Tipo de asiento" %>
-	<%= f.text_field :tipo,required: true %>
-</div>
+<%= f.label :tipo,"Tipo de asiento" %><br />
+ <%= f.select :tipo,
+       options_for_select(Combi.tipos) %>
+ </div> 
 <div>
 	<%= f.label :cant_asientos,"Cantidad de asientos" %>
 	<%= f.number_field :cant_asientos,required: true %>
@@ -20,3 +21,4 @@
 	<%= f.submit "Crear combi" %>
 </div>
 <% end %>
+<br /><%= link_to "Atrás",  combis_path %>

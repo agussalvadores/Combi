@@ -37,7 +37,7 @@ class ViajesController < ApplicationController
   end
    private
     def set_viaje
-      @viaje = viaje.find(params[:id])
+      @viaje = Viaje.find(params[:id])
     end
   
   private

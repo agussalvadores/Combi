@@ -25,14 +25,15 @@
 	<%= f.number_field :cant_pasajes %>
 </div>
 <div>
-	<%= f.label :combi %>
-	<%= f.text_field :combi %>
+	<%= f.label :combi,"Tipo de asiento" %>
+ 	<%= f.select :combi,
+       options_for_select(Combi.tipos) %>
 </div>
 <div>
 	<%= f.label :chofer %>
 	<%= f.text_field :chofer %>
 </div>
 <div>
-	<%= f.submit %>
+	<%= f.submit "Guardar cambios" %>
 </div>
 <% end %>

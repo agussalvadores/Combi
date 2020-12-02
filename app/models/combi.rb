@@ -1,4 +1,5 @@
 class Combi < ApplicationRecord
+	has_many :viajes
 	validates :patente , presence:true , uniqueness:true
 	enum tipo: { Comoda: '1' , Supercomoda: '2' }
 	scope :availables, -> {where(deleted_at: nil)}

@@ -5,13 +5,15 @@
  	<div class="container-fluid">
  	<table class="table">
  	<thead class="thead-dark">
- 	<tr align="center">	
+ 	<tr align="center">
 
 		<thead>
 			<th> Origen </th>
 			<th> Destino </th>
-			<th> Salida </th>
-			<th> Llegada </th>
+			<th> Fecha Salida </th>
+			<th> Hora Salida </th>
+			<th> Fecha Llegada </th>
+			<th> Hora Llegada </th>
 			<th> Precio </th>
 			<th> Pasajes </th>
 			<th> Combi </th>
@@ -20,18 +22,28 @@
 	</thead>
 	<% @viajes.each do |viaje| %>
 	<tr>
-		<td><%= viaje.origen %></td>
-		<td><%= viaje.destino %></td>
-		<td><%= viaje.hor_salida %></td>
-		<td><%= viaje.hor_llegada %></td>
+		<td><%= Ciudad.find(viaje.origen).nombre %></td>
+		<td><%= Ciudad.find(viaje.destino).nombre %></td>
+		<td><%= viaje.fecha_salida %></td>
+		<%if viaje.hor_salida.nil?%>
+			<td><%="0:0"%></td>
+		<%else%>
+			<td><%= viaje.hor_salida.strftime("%H:%M")%></td>
+		<%end%>
+		<td><%= viaje.fecha_llegada %></td>
+		<%if viaje.hor_llegada.nil?%>
+			<td><%="0:0"%></td>
+		<%else%>
+			<td><%= viaje.hor_llegada.strftime("%H:%M")%></td>
+		<%end%>
 		<td><%= viaje.precio %></td>
 		<td><%= viaje.cant_pasajes %></td>
-		<td><%= viaje.combi %></td>
-		<td><%= viaje.chofer %></td>
+		<td><%= Combi.find(viaje.combi_id).patente %></td>
+		<td><%= User.find(viaje.user_id).nombre %></td>
 		<td>
 		<%= link_to "Editar", edit_viaje_path(viaje) %>
-		<%= link_to "Eliminar", viaje, method: :delete, data: { confirm: "¿Seguro que desea eliminar el viaje?"}%>	
-	</div>		
+		<%= link_to "Eliminar", viaje, method: :delete, data: { confirm: "¿Seguro que desea eliminar el viaje?"}%>
+	</div>
 	</td>
 	</tr>
 	<% end %>
@@ -40,4 +52,4 @@
 	"No tienes acceso suficiente"
 	</div>
 <%end%>
-<br/> <%= link_to "Atrás", :back %>
+<br/> <%= link_to "Atrás", home_index_path %>

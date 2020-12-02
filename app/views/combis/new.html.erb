@@ -1,24 +1,28 @@
-<%= form_for @combi, :url => { :action => :create }  do |f| %>
-
-<div>
-	<%= f.label :patente,"Patente" %>
-	<%= f.text_field :patente,required: true %>
+<%if current_user && current_user.role == "admin"%>
+<%= form_for @combi, :url => { :action => :create } do |f| %>
+ <div class="field">
+  <%= f.label :patente,"Patente" %><br />
+  <%= f.text_field :patente,required: true %>
 </div>
-<div>
-<%= f.label :tipo,"Tipo de asiento" %>
+ <%= f.label :tipo,"Tipo de asiento" %><br />
  <%= f.select :tipo,
        options_for_select(Combi.tipos) %>
- </div> 
-<div>
-	<%= f.label :cant_asientos,"Cantidad de asientos" %>
-	<%= f.number_field :cant_asientos,required: true %>
+
+   <div class="field">
+   <%= f.label :cant_asientos, "Cantidad de asientos" %><br />
+  <%= f.number_field :cant_asientos, required: true %>
 </div>
-<div>
-	<%= f.label :descripcion, "Descripción" %>
-	<%= f.text_area :descripcion %>
+<div class="field">
+ <%= f.label :descripcion,"Descripción" %><br />
+  <%= f.text_area :descripcion, required: true %>
 </div>
-<div>
-	<%= f.submit "Crear combi" %>
+<div class="Actions">
+  <%= f.submit "Guardar cambios"%>
 </div>
 <% end %>
-<br /><%= link_to "Atrás",  combis_path %>
+<%else%>
+<div class="alert alert-danger">
+ "No tienes acceso suficiente"
+ </div>
+<% end %>
+<%=link_to "Atrás", combis_path %>

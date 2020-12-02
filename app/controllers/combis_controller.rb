@@ -1,8 +1,8 @@
 class CombisController < ApplicationController
 	def index
-		@combis = Combi.all	
+		@combis = Combi.all
 	end
-	
+
 	def new
 		@combi = Combi.new
 	end
@@ -26,18 +26,21 @@ class CombisController < ApplicationController
 			redirect_to combis_path, notice: "Datos actualizados correctamente"
 		else
 			render :edit
-		end 
+		end
 	end
 
 	def delete
 		@combi = Combi.find(params[:id])
-		@combi.destroy
-		redirect_to combis_path, notice: "Combi eliminada correctamente"
+		if @combi.viajes.empty?
+			@combi.destroy
+			redirect_to combis_path, notice: "Combi eliminada correctamente"
+		else
+			redirect_to combis_path, notice: "No se puede eliminar la combi debido a que tiene viajes asignados"
+		end
 	end
-	
+
 	private
 		def combi_parametros
 			params.require(:combi).permit([:patente, :tipo, :cant_asientos, :descripcion])
 		end
 end
-

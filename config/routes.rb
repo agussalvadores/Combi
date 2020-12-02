@@ -34,7 +34,13 @@ Rails.application.routes.draw do
   patch '/combis/:id', to: 'combis#update'
   delete '/combis/:id', to: 'combis#delete'
   #resources :combis
- 
+  get '/ciudades', to: 'ciudads#index'
+  get '/ciudades/new', to: 'ciudads#new'
+  post '/ciudades', to: 'ciudads#create'
+  get '/ciudades/:id', to: 'ciudads#show', as: 'ciudad'
+  get '/ciudades/:id/edit', to: 'ciudads#edit', as: 'edit_ciudad'
+  patch '/ciudades/:id', to: 'ciudads#update'
+  delete '/ciudades/:id', to: 'ciudads#delete'
   end
  
   

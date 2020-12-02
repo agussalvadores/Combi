@@ -20,10 +20,11 @@
 		<td><%= combi.descripcion %></td>
 		<td>
 		<%= link_to "Editar", edit_combi_path(combi.id) %>
-		<%= link_to "Eliminar", combi, method: :delete, data: { confirm: "¿Seguro que desea eliminar la combi?"}%>	
+		<%= link_to "Eliminar", combi, method: :delete, data: { confirm: "¿Seguro que desea eliminar la combi?"}%>
 		</td>
 	</tr>
 	<% end %>
+	<%= link_to "Agregar nueva combi", combis_new_path %>
 	</table>
 
 
@@ -32,5 +33,5 @@
 	"No tienes acceso suficiente"
 	</div>
 <%end%>
-<%= link_to "Agregar nueva combi", combis_new_path %>	
-<br /><%= link_to "Atrás",  home_index_path %>
+
+<br /><%= link_to "Atrás", home_index_path %>

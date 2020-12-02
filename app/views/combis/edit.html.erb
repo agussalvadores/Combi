@@ -1,12 +1,13 @@
-<%= form_for @combi, :url => { :action => :update } do |f| %>
+<%if current_user && current_user.role == "admin"%>
+<%= form_for @combi, :url => { :action => :create } do |f| %>
  <div class="field">
   <%= f.label :patente,"Patente" %><br />
   <%= f.text_field :patente,required: true %>
 </div>
- <%= f.label :tipo,"Tipo de asiento" %>
+ <%= f.label :tipo,"Tipo de asiento" %><br />
  <%= f.select :tipo,
        options_for_select(Combi.tipos) %>
-    
+
    <div class="field">
    <%= f.label :cant_asientos, "Cantidad de asientos" %><br />
   <%= f.number_field :cant_asientos, required: true %>
@@ -18,5 +19,10 @@
 <div class="Actions">
   <%= f.submit "Guardar cambios"%>
 </div>
+<% end %>
+<%else%>
+<div class="alert alert-danger">
+ "No tienes acceso suficiente"
+ </div>
 <% end %>
 <%=link_to "Atrás", combis_path %>

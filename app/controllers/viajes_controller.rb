@@ -1,9 +1,9 @@
 class ViajesController < ApplicationController
    before_action :set_viaje, only: [:show, :edit, :update, :destroy]
    def index
-    @viajes = Viaje.all 
+    @viajes = Viaje.all
    end
-  
+
   def new
     @viaje =Viaje.new
   end
@@ -27,7 +27,7 @@ class ViajesController < ApplicationController
       redirect_to viajes_path ,notice:"Viaje actualizado correctamente"
     else
       render :edit
-    end 
+    end
   end
 
   def delete
@@ -39,10 +39,10 @@ class ViajesController < ApplicationController
     def set_viaje
       @viaje = Viaje.find(params[:id])
     end
-  
+
   private
     def viaje_parametros
-      params.require(:viaje).permit(:origen, :destino, :hor_salida, :hor_llegada, :precio, :cant_pasajes, :combi, :chofer)
+      params.require(:viaje).permit(:origen, :destino, :hor_salida, :hor_llegada, :precio, :cant_pasajes, :combi_id, :user_id, :fecha_salida, :fecha_llegada)
     end
 
 end

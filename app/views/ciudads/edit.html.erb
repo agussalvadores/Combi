@@ -1,0 +1,29 @@
+<%if current_user && current_user.role == "admin"%>
+<%= form_for @ciudad do |f| %>
+
+    <div>
+        <%= f.label :nombre, "Nombre" %>
+        <%= f.text_field :nombre %>
+    </div>
+    <div>
+        <%= f.label :provincia, "Provincia" %>
+        <%= f.text_field :provincia %>
+    </div>
+    <div>
+        <%= f.label :descrip, "Descripcion" %>
+        <%= f.text_field :descrip %>
+    </div>
+    <div>
+        <%= f.label :url_img, "URL de la imagen" %>
+        <%= f.text_field :url_img %>
+    </div>
+    <div>
+        <%= f.submit "Guardar Cambios" %>
+    </div>
+<% end %>
+<%else%>
+<div class="alert alert-danger">
+"No tienes acceso suficiente"
+</div>
+<%end%>
+<br/> <%= link_to "Atrás", ciudades_path %>

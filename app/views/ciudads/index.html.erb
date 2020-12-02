@@ -1,0 +1,34 @@
+<%if current_user && current_user.role == "admin"%>
+	<h1> Listado de ciudades</h1>
+	<%= link_to "Agregar nueva ciudad", ciudades_new_path %>
+	<div class="container-fluid">
+  	  <table class="table">
+  	  <thead class="thead-dark">
+  	  <tr align="center">
+
+		<thead>
+			<th> Nombre </th>
+			<th> Provincia </th>
+			<th> Descripcion </th>
+			<th> Imagen </th>
+			<th colspan=4></th>
+		</thead>
+	<% @ciudads.each do |ciudad| %>
+	<tr>
+		<td><%= ciudad.nombre %></td>
+		<td><%= ciudad.provincia %></td>
+		<td><%= ciudad.descrip %></td>
+		<td><%= image_tag ciudad.url_img,size: "200x150" %></td>
+		<td>
+		<%= link_to "Editar", edit_ciudad_path(ciudad) %>
+		<%= link_to "Eliminar",ciudad, method: :delete, data: { confirm: "¿Seguro que desea eliminar la ciudad?"}%>
+		</td>
+	</tr>
+	<% end %>
+
+	<%else%>
+<div class="alert alert-danger">
+	"No tienes acceso suficiente"
+	</div>
+<%end%>
+<br/> <%= link_to "Atrás", home_index_path %>

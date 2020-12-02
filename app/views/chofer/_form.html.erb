@@ -5,14 +5,10 @@
     </div>
 
     <div class="field">
-      <%= f.label :nombre, "Nombre"%><br />
+      <%= f.label :nombre, "Nombre Completo"%><br />
       <%= f.text_field :nombre,required: true, placeholder: "Nombre" %>
     </div>
 
-    <div class="field">
-      <%= f.label :apellido, "Apellido" %><br />
-      <%= f.text_field :apellido,required: true, placeholder: "apellido" %>
-    </div>
     <div class="field">
       <%= f.label :dni,"Documento" %><br />
       <%= f.text_field :dni,required: true, placeholder: "DNI" %>
@@ -42,6 +38,5 @@
     <div class="Actions">
     	<%= f.submit "Registro de chofer"%>
     </div>
-
 <%end%>
 <br/> <%= link_to "Atrás", chofer_index_path%>

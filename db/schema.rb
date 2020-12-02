@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_181138) do
+ActiveRecord::Schema.define(version: 2020_12_01_211937) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(version: 2020_11_30_181138) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "searches", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -42,7 +47,6 @@ ActiveRecord::Schema.define(version: 2020_11_30_181138) do
     t.integer "dni"
     t.integer "celular"
     t.string "nombre"
-    t.string "apellido"
     t.datetime "fecha_de_nacimiento"
     t.integer "role", default: 1
     t.integer "card"

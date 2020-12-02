@@ -3,7 +3,7 @@
   <%= f.label :patente,"Patente" %><br />
   <%= f.text_field :patente,required: true %>
 </div>
- <%= f.label :tipo,"Tipo de asiento" %><br />
+ <%= f.label :tipo,"Tipo de asiento" %>
  <%= f.select :tipo,
        options_for_select(Combi.tipos) %>
     
@@ -19,4 +19,4 @@
   <%= f.submit "Guardar cambios"%>
 </div>
 <% end %>
-<%=link_to "Atrás", :back,combis_path %>
+<%=link_to "Atrás", combis_path %>

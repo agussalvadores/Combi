@@ -5,7 +5,7 @@
 	<%= f.text_field :patente,required: true %>
 </div>
 <div>
-<%= f.label :tipo,"Tipo de asiento" %><br />
+<%= f.label :tipo,"Tipo de asiento" %>
  <%= f.select :tipo,
        options_for_select(Combi.tipos) %>
  </div> 
@@ -14,7 +14,7 @@
 	<%= f.number_field :cant_asientos,required: true %>
 </div>
 <div>
-	<%= f.label :descripcion,"Descripción" %>
+	<%= f.label :descripcion, "Descripción" %>
 	<%= f.text_area :descripcion %>
 </div>
 <div>

@@ -18,20 +18,31 @@ class ChoferController < ApplicationController
 	def create
      @chofer= User.new(chofer_params)
 	 @chofer.role= "chofer"
-	if @chofer.save!
+	 if @chofer.fecha_de_nacimiento.present? && @chofer.fecha_de_nacimiento.to_date > 18.years.ago.to_date
+      redirect_to new_chofer_path, notice: 'Usted debe ser mayor de edad.'
+     else 
+	 if @chofer.save
 		redirect_to chofer_index_path, notice: "Registro exitoso"
-	else
-		redirect_to chofer_index_path, notice: "No se pudo registrar"
+	 else
+	    redirect_to new_chofer_path, notice: "No se pudo registrar"
+	 end
 	end
 	end
 	def update
-		@chofer = User.find(params[:id])
-		if @chofer.update(chofer_params)
-			redirect_to chofer_index_path, notice: "Datos actualizados"
-		else 
-			render :edit
-		end
-	end	
+	@chofer = User.find(params[:id])
+
+		 if @chofer.update(chofer_params)
+			 redirect_to chofer_index_path, notice: "Datos actualizados"
+			 else
+			 if @chofer.fecha_de_nacimiento.present? && @chofer.fecha_de_nacimiento.to_date > 18.years.ago.to_date
+      	 	 redirect_to edit_chofer_path, notice: 'Usted debe ser mayor de edad.'
+	     	 
+	     	 else
+	     	 	redirect_to edit_chofer_path, notice: "No se pudo actualizar"
+	     	 end
+	 	 end
+		 end
+	
 	def destroy
 		@chofer= User.find(params[:id])
 		if @chofer.libre 
@@ -44,6 +55,6 @@ class ChoferController < ApplicationController
 	
 	private
 	def chofer_params
-		params.require(:user).permit([:email,:password,:password_confirmation,:nombre,:apellido,:fecha_de_nacimiento,:dni,:celular])
+		params.require(:user).permit([:email,:password,:password_confirmation,:nombre,:fecha_de_nacimiento,:dni,:celular])
 	end	
 end

@@ -3,10 +3,10 @@ Rails.application.routes.draw do
         sessions: 'users/sessions' , registrations: 'users/registrations' , passwords: 'users/passwords',
       }
 
-  
+
   resources :users
-  root to: "home#index"
-  get 'home/index'
+  root to: "viajes#buscador"
+  get 'viajes/buscador'
   resources :chofer
   get '/chofer/index', to: 'chofer#index'
   get '/chofer/new', to: 'chofer#new'
@@ -17,8 +17,10 @@ Rails.application.routes.draw do
   patch '/chofer/:id', to: 'chofer#update'
   delete '/chofer/destroy/:id', to: 'chofer#destroy', as: 'destroy_chofer'
   get '/chofer/show/:id', to: 'chofer#show' , as: 'show_chofer'
-  
+
   get '/viajes', to: 'viajes#index'
+  get '/viajes/results', to: 'viajes#results'
+  get '/viajes/buscador', to: 'viajes#buscador'
   get '/viajes/new', to: 'viajes#new'
   post '/viajes', to: 'viajes#create'
   get '/viajes/:id', to: 'viajes#show', as: 'viaje'
@@ -41,6 +43,13 @@ Rails.application.routes.draw do
   get '/ciudades/:id/edit', to: 'ciudads#edit', as: 'edit_ciudad'
   patch '/ciudades/:id', to: 'ciudads#update'
   delete '/ciudades/:id', to: 'ciudads#delete'
+
+  get '/insumos', to: 'insumos#index'
+  get '/insumos/new', to: 'insumos#new'
+  post '/insumos', to: 'insumos#create'
+  get '/insumos/:id', to: 'insumos#show', as: 'insumo'
+  get '/insumos/:id/edit', to: 'insumos#edit', as: 'edit_insumo'
+  patch '/insumos/:id', to: 'insumos#update'
+  delete '/insumos/:id', to: 'insumos#delete'
+#resources :insumos
   end
- 
-  

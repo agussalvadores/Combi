@@ -1,0 +1,44 @@
+<h1> Resultados</h1>
+<div class="container-fluid">
+<table class="table">
+<thead class="thead-dark">
+<tr align="center">
+
+  <thead>
+    <th> Origen </th>
+    <th> Destino </th>
+    <th> Fecha Salida </th>
+    <th> Hora Salida </th>
+    <th> Fecha Llegada </th>
+    <th> Hora Llegada </th>
+    <th> Precio </th>
+    <th> Pasajes disponilbes </th>
+    <th colspan="9"></th>
+</thead>
+<% @viajes.each do |viaje| %>
+<tr>
+
+  <td><%= Ciudad.find(viaje.origen).nombre %></td>
+  <td><%= Ciudad.find(viaje.destino).nombre %></td>
+  <td><%= viaje.fecha_salida %></td>
+  <%if viaje.hor_salida.nil?%>
+    <td><%="0:0"%></td>
+  <%else%>
+    <td><%= viaje.hor_salida.strftime("%H:%M")%></td>
+  <%end%>
+  <td><%= viaje.fecha_llegada %></td>
+  <%if viaje.hor_llegada.nil?%>
+    <td><%="0:0"%></td>
+  <%else%>
+    <td><%= viaje.hor_llegada.strftime("%H:%M")%></td>
+  <%end%>
+  <td><%= viaje.precio %></td>
+  <td><%= viaje.cant_pasajes %></td>
+  <td><%= image_tag Ciudad.find(viaje.destino).url_img,size: "200x150" %></td>
+  <td><%= Ciudad.find(viaje.destino).descrip%></td>
+  <td>
+  <%= link_to "Comprar" %>
+</td>
+</tr>
+</div>
+<% end %>

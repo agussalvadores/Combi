@@ -4,6 +4,16 @@ class ViajesController < ApplicationController
     @viajes = Viaje.all
    end
 
+   def results
+     @viajes = Viaje.where(origen: params[:origen],destino: params[:destino],fecha_salida: params[:fecha_salida])
+     if Viaje.where(origen: params[:origen],destino: params[:destino],fecha_salida: params[:fecha_salida]).empty?
+       redirect_to viajes_buscador_path, notice:"No se encontraron viajes"
+     end
+   end
+   def buscador
+ 		@viajes = Viaje.all
+    @viaje=Viaje.new
+ 	end
   def new
     @viaje =Viaje.new
   end

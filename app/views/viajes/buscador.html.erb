@@ -1,0 +1,17 @@
+
+
+<%= form_tag(viajes_results_path, method: "get") do %>
+<div>
+	<%= label_tag(:origen, "Origen:") %>
+	<%= select_tag(:origen, options_for_select(Ciudad.all.map { |ciudad| [ciudad.nombre, ciudad.id] })) %>
+</div>
+<div>
+	<%= label_tag(:destino, "Destino:") %>
+	<%= select_tag(:destino, options_for_select(Ciudad.all.map { |ciudad| [ciudad.nombre, ciudad.id] })) %>
+</div>
+<div>
+	<%= label_tag(:fecha_salida, "Fecha de salida:") %>
+	<%= date_field_tag(:fecha_salida, Date.today)%>
+</div>
+<%= submit_tag("Buscar Pasajes") %>
+<%end%>

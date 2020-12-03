@@ -43,13 +43,14 @@
 		<td>
 		<%= link_to "Editar", edit_viaje_path(viaje) %>
 		<%= link_to "Eliminar", viaje, method: :delete, data: { confirm: "¿Seguro que desea eliminar el viaje?"}%>
-	</div>
 	</td>
 	</tr>
+	</div>
+
 	<% end %>
 <%else%>
 <div class="alert alert-danger">
 	"No tienes acceso suficiente"
 	</div>
 <%end%>
-<br/> <%= link_to "Atrás", home_index_path %>
+<br/> <%= link_to "Atrás", viajes_buscador_path %>

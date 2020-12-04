@@ -1,0 +1,32 @@
+<%if current_user && current_user.role == "pasajero"%>
+<%= form_for @pasaje do |f| %>
+
+  <div class="field">
+  <%= f.label :titular,"Nombre del pasajero" %><br />
+  <%= f.text_field :titular, required: true, placeholder: 'Nombre completo'%>
+</div>
+  <div class="field">
+  <%= f.label :dni_t,"DNI del pasajero" %><br />
+  <%= f.text_field :dni_t, required: true, placeholder: 'Sin puntos'%>
+</div>
+<div class="field">
+  <%= f.label :nro_t, "Numero de tarjeta" %><br />
+  <%= f.text_field :nro_t, required: true, placeholder: '16 digitos' %>
+</div>
+<div class="field">
+    <%= f.label "Vencimiento:" %><br />
+    <%= f.select :v_m_tarjeta, [1,2,3,4,5,6,7,8,9,10,11,12] %>
+    <%= f.select :v_a_tarjeta, [2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030] %>
+    </div>
+
+    <div class="field">
+    <%= f.label :cod_t, "Codigo de seguridad" %><br />
+    <%= f.text_field :cod_t, placeholder: '3 digitos en el dorso' %>
+    </div>
+<% end %>
+<% else %>
+<div class="alert alert-danger">
+ "Debes ser pasajero"
+ </div>
+<% end %>
+<%=link_to "Atrás", :back %>

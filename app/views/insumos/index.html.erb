@@ -9,14 +9,14 @@
 		<thead>
 			<th> Nombre </th>
 			<th> Precio </th>
-			<th> Url_img </th>
+			<th> Imagen </th>
 			<th colspan=3></th>
 		</thead>
 	<% @insumos.each do |insumo| %>
 	<tr>
 		<td><%= insumo.nombre %></td>
-		<td><%= insumo.precio %></td>
-		<td><%= insumo.url_img %></td>
+		<td>$<%= insumo.precio %></td>
+		<td><%= image_tag insumo.url_img,size: "100x100" %></td>
 
 		<td>
 		<%= link_to "Editar", edit_insumo_path(insumo) %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_180536) do
+ActiveRecord::Schema.define(version: 2020_12_04_023328) do
 
   create_table "ciudads", force: :cascade do |t|
     t.string "nombre"
@@ -37,12 +37,47 @@ ActiveRecord::Schema.define(version: 2020_12_02_180536) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "comprars", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_comprars_on_user_id"
+  end
+
   create_table "insumos", force: :cascade do |t|
     t.string "nombre"
     t.float "precio"
     t.string "url_img"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "join_insumos_pasajes", force: :cascade do |t|
+    t.integer "insumo_id"
+    t.integer "pasaje_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["insumo_id"], name: "index_join_insumos_pasajes_on_insumo_id"
+    t.index ["pasaje_id"], name: "index_join_insumos_pasajes_on_pasaje_id"
+  end
+
+  create_table "pasajes", force: :cascade do |t|
+    t.string "titular"
+    t.string "dni_t"
+    t.integer "precio"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "comprar_id"
+    t.integer "viaje_id"
+    t.integer "nro_t"
+    t.integer "v_m_tarjeta"
+    t.integer "v_a_tarjeta"
+    t.integer "cod_t"
+    t.index ["comprar_id"], name: "index_pasajes_on_comprar_id"
+    t.index ["user_id"], name: "index_pasajes_on_user_id"
+    t.index ["viaje_id"], name: "index_pasajes_on_viaje_id"
   end
 
   create_table "searches", force: :cascade do |t|
@@ -72,6 +107,11 @@ ActiveRecord::Schema.define(version: 2020_12_02_180536) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "venta", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "viajes", force: :cascade do |t|
     t.integer "origen"
     t.integer "destino"
@@ -89,6 +129,12 @@ ActiveRecord::Schema.define(version: 2020_12_02_180536) do
     t.index ["user_id"], name: "index_viajes_on_user_id"
   end
 
+  add_foreign_key "comprars", "users"
+  add_foreign_key "join_insumos_pasajes", "insumos"
+  add_foreign_key "join_insumos_pasajes", "pasajes"
+  add_foreign_key "pasajes", "comprars"
+  add_foreign_key "pasajes", "users"
+  add_foreign_key "pasajes", "viajes"
   add_foreign_key "viajes", "combis"
   add_foreign_key "viajes", "users"
 end

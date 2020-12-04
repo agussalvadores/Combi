@@ -24,13 +24,13 @@
 	<tr>
 		<td><%= Ciudad.find(viaje.origen).nombre %></td>
 		<td><%= Ciudad.find(viaje.destino).nombre %></td>
-		<td><%= viaje.fecha_salida %></td>
+		<td><%= viaje.fecha_salida.strftime("%d/%m/%Y") %></td>
 		<%if viaje.hor_salida.nil?%>
 			<td><%="0:0"%></td>
 		<%else%>
 			<td><%= viaje.hor_salida.strftime("%H:%M")%></td>
 		<%end%>
-		<td><%= viaje.fecha_llegada %></td>
+		<td><%= viaje.fecha_llegada.strftime("%d/%m/%Y")%></td>
 		<%if viaje.hor_llegada.nil?%>
 			<td><%="0:0"%></td>
 		<%else%>

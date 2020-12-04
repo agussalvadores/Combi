@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :comprars
+  resources :venta
+  #resources :pasajes
+  get '/pasajes', to: 'pasajes#index'
+  get '/pasajes/new', to: 'pasajes#new'
    devise_for :users, controllers: {
         sessions: 'users/sessions' , registrations: 'users/registrations' , passwords: 'users/passwords',
       }
@@ -7,6 +12,7 @@ Rails.application.routes.draw do
   resources :users
   root to: "viajes#buscador"
   get 'viajes/buscador'
+
   resources :chofer
   get '/chofer/index', to: 'chofer#index'
   get '/chofer/new', to: 'chofer#new'

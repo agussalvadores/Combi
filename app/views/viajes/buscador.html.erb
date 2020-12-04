@@ -1,17 +1,18 @@
 
 
 <%= form_tag(viajes_results_path, method: "get") do %>
+<h1 class="_70d32459db22475c3f25d5917f32a078-scss"> BUSCA TU PASAJE</h1>
 <div>
 	<%= label_tag(:origen, "Origen:") %>
-	<%= select_tag(:origen, options_for_select(Ciudad.all.map { |ciudad| [ciudad.nombre, ciudad.id] })) %>
+	<%= select_tag(:origen, options_for_select(Ciudad.all.map { |ciudad| [ciudad.nombre, ciudad.id] }),class: "form-control input-sm selectpicker") %>
 </div>
 <div>
 	<%= label_tag(:destino, "Destino:") %>
-	<%= select_tag(:destino, options_for_select(Ciudad.all.map { |ciudad| [ciudad.nombre, ciudad.id] })) %>
+	<%= select_tag(:destino, options_for_select(Ciudad.all.map { |ciudad| [ciudad.nombre, ciudad.id] }),class: "form-control input-sm selectpicker") %>
 </div>
 <div>
 	<%= label_tag(:fecha_salida, "Fecha de salida:") %>
-	<%= date_field_tag(:fecha_salida, Date.today)%>
+	<%= date_field_tag(:fecha_salida, Date.today, class:"form-control input-sm datepicker")%>
 </div>
-<%= submit_tag("Buscar Pasajes") %>
+<%= submit_tag("Buscar Pasajes", class:"btn btn-primary") %>
 <%end%>

@@ -8,6 +8,7 @@
 	    <thead>
   	    <th>Nombre</th>
     	  <th>Email</th>
+				<th>Fecha De Nacimiento</th>
         <th colspan="3"></th>
   	</tr>
     </thead>
@@ -16,7 +17,7 @@
   	<tr>
     	<td><%= chof.nombre %></td>
     	<td><%= chof.email %></td>
-      <td><%= chof.fecha_de_nacimiento.strftime("%d-%m-%Y")%></td>
+      <td><%= chof.fecha_de_nacimiento.strftime("%d/%m/%Y")%></td>
     	<td>
     	 <%= link_to "Editar", edit_chofer_path(chof.id) %>
        <%= link_to "Mostrar", show_chofer_path(chof.id) %>
@@ -28,7 +29,7 @@
   	</tr>
     <% end %>
     </table>
-   
+
  <%else%>
 	<div class="alert alert-danger">
 	"No tienes acceso suficiente"

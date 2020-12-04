@@ -1,1 +1,26 @@
+<%= form_for @chofer, :url => { :action => :show } do |f| %>
+  <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, readonly: true %>
+    </div>
+     <div class="field">
+      <%= f.label :nombre, "Nombre Completo"%><br />
+      <%= f.text_field :nombre,readonly: true %>
+    </div>
+    <div class="field">
+      <%= f.label :dni,"Documento" %><br />
+      <%= f.text_field :dni,readonly: true %>
+    </div>
+    <div class="field">
+      <%= f.label :fecha_de_nacimiento,"Fecha de nacimiento" %><br />
+      <%= f.date_field :fecha_de_nacimiento,readonly: true %>
+    </div>
 
+    <div class="field">
+      <%= f.label :celular,"Numero de celular" %><br />
+      <%= f.text_field :celular,readonly: true %>
+    </div>
+
+
+<%end%>
+<br/> <%= link_to "Atrás", chofer_index_path%>

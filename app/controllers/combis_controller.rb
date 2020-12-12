@@ -9,10 +9,10 @@ class CombisController < ApplicationController
 
 	def create
 		@combi = Combi.create(combi_parametros)
-		if @combi.save!
+		if @combi.save
 			redirect_to combis_path, notice: "Combi creada correctamente"
 		else
-			render :new
+			redirect_to combis_new_path, notice: "Patente en uso"
 		end
 	end
 
@@ -25,7 +25,7 @@ class CombisController < ApplicationController
 		if @combi.update(combi_parametros)
 			redirect_to combis_path, notice: "Datos actualizados correctamente"
 		else
-			render :edit
+			redirect_to edit_combi_path(params[:id]), notice: "Patente en uso"
 		end
 	end
 

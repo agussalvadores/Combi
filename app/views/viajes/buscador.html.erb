@@ -4,11 +4,11 @@
 <h1 class="_70d32459db22475c3f25d5917f32a078-scss"> BUSCA TU PASAJE</h1>
 <div>
 	<%= label_tag(:origen, "Origen:") %>
-	<%= select_tag(:origen, options_for_select(Ciudad.all.map { |ciudad| [ciudad.nombre, ciudad.id] }),class: "form-control input-sm selectpicker") %>
+	<%= select_tag(:origen, options_for_select(Ciudad.all.map { |ciudad| [ciudad.nombre, ciudad.id] },placeholder:"SELECCIONAR ORIGEN"),class: "form-control input-sm selectpicker")%>
 </div>
 <div>
 	<%= label_tag(:destino, "Destino:") %>
-	<%= select_tag(:destino, options_for_select(Ciudad.all.map { |ciudad| [ciudad.nombre, ciudad.id] }),class: "form-control input-sm selectpicker") %>
+	<%= select_tag(:destino, options_for_select(Ciudad.all.map { |ciudad| [ciudad.nombre, ciudad.id] },placeholder:"SELECCIONAR DESTINO"),class: "form-control input-sm selectpicker") %>
 </div>
 <div>
 	<%= label_tag(:fecha_salida, "Fecha de salida:") %>

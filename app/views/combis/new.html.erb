@@ -24,5 +24,7 @@
 <div class="alert alert-danger">
  "No tienes acceso suficiente"
  </div>
+ <%= render "combis/shared/error_messages", resource: combi%>
 <% end %>
+
 <%=link_to "Atrás", combis_path %>

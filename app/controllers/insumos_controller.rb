@@ -1,8 +1,8 @@
 class InsumosController < ApplicationController
 	def index
-		@insumos = Insumo.all	
+		@insumos = Insumo.all
 	end
-	
+
 	def new
 		@insumo =Insumo.new
 	end
@@ -12,7 +12,7 @@ class InsumosController < ApplicationController
 		if @insumo.save
 			redirect_to insumos_path, notice: "Insumo creado correctamente"
 		else
-			render :new
+			redirect_to insumos_new_path, notice: "El insumo ya existe"
 		end
 	end
 
@@ -25,8 +25,8 @@ class InsumosController < ApplicationController
 		if @insumo.update(insumo_parametros)
 			redirect_to insumos_path, notice: "Datos actualizados correctamente"
 		else
-			render :edit
-		end 
+			redirect_to edit_insumo_path(params[:id]), notice: "El insumo ya existe"
+		end
 	end
 
 	def delete
@@ -34,9 +34,9 @@ class InsumosController < ApplicationController
 		@insumo.destroy
 		redirect_to insumos_path, notice: "Insumo eliminado correctamente"
 	end
-	
+
 	private
 		def insumo_parametros
-			params.require(:insumo).permit(:nombre, :precio, :url_img)
+			params.require(:insumo).permit(:nombre, :precio, :stock, :url_img)
 		end
 end

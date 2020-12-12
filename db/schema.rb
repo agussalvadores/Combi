@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_04_023328) do
+ActiveRecord::Schema.define(version: 2020_12_11_040335) do
 
   create_table "ciudads", force: :cascade do |t|
     t.string "nombre"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_12_04_023328) do
     t.string "url_img"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "stock"
   end
 
   create_table "join_insumos_pasajes", force: :cascade do |t|

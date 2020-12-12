@@ -1,0 +1,50 @@
+<%if current_user && current_user.role == "pasajero"%>
+<h1 class="_70d32459db22475c3f25d5917f32a078-scss"> Paso 1: COMPLETA TUS DATOS Y ELEGI TUS INSUMOS</h1>
+
+<%= form_for @pasaje do |f| %>
+
+  <div class="field">
+  <%= f.label :titular,"Nombre del pasajero" %><br />
+  <%= f.text_field :titular, required: true, placeholder: 'Nombre completo'%>
+</div>
+  <div class="field">
+  <%= f.label :dni_t,"DNI del pasajero" %><br />
+  <%= f.text_field :dni_t, required: true, placeholder: 'Sin puntos'%>
+</div>
+  <div class="field">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :viaje_id, value: @viaje%>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :comprar_id, value:0%>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :nro_t, value: 9000000000000000%>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :cod_t, value: 900%>
+  </div>
+<br />
+<h1 class="_70d32459db22475c3f25d5917f32a078-scss"> Paso 2: SELECCIONE LOS SNACKS PARA SU VIAJE</h1>
+
+<% @insumos.each do |insumo| %>
+<br />
+<tr>
+<td><%= insumo.nombre %></td>
+<td>$<%= insumo.precio %></td>
+<td><%= insumo.stock %></td>
+<td><%= image_tag insumo.url_img,size: "100x100" %></td>
+<td><%= check_box_tag "insumo_ids[]", insumo.id, false, class: 'selectable' %></td>
+</tr>
+<% end %>
+<br />
+<%=f.submit "Siguiente"%>
+<% end %>
+<% else %>
+<div class="alert alert-danger">
+ "Debes ser pasajero"
+ </div>
+<% end %>
+<%=link_to "Atrás", :back %>

@@ -45,11 +45,11 @@ class ChoferController < ApplicationController
 
 	def destroy
 		@chofer= User.find(params[:id])
-		if @chofer.libre
+		if @chofer.viajes.empty?
 			@chofer.destroy
 			redirect_to chofer_index_path
 		else
-			redirect_to chofer_index_path, notice: "No se puede eliminar, el chofer tiene asignado un viaje"
+			redirect_to chofer_index_path, notice: "No se puede eliminar, el chofer tiene asignado uno o mas viajes"
 		end
 	end
 

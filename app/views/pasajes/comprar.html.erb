@@ -6,20 +6,22 @@
   <div class="field">
   <%= f.label :titular,"Nombre del pasajero" %><br />
   <%= f.text_field :titular, required: true, placeholder: 'Nombre completo'%>
-</div>
+ </div>
+
   <div class="field">
   <%= f.label :dni_t,"DNI del pasajero" %><br />
   <%= f.text_field :dni_t, required: true, placeholder: 'Sin puntos'%>
-</div>
+ </div>
+   <div class="field">
+    <%= f.hidden_field :precio, value: @viaje.precio %>
+  </div>
   <div class="field">
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
   <div class="field">
-    <%= f.hidden_field :viaje_id, value: @viaje%>
+    <%= f.hidden_field :viaje_id, value: @viaje %>
   </div>
-  <div class="field">
-    <%= f.hidden_field :comprar_id, value:0%>
-  </div>
+ 
   <div class="field">
     <%= f.hidden_field :nro_t, value: 9000000000000000%>
   </div>
@@ -28,6 +30,17 @@
   </div>
 <br />
 <h1 class="_70d32459db22475c3f25d5917f32a078-scss"> Paso 2: SELECCIONE LOS SNACKS PARA SU VIAJE</h1>
+<div class="container-fluid">
+<table class="table">
+<thead class="thead-dark">
+<tr align="center">
+    <thead>
+      <th> Nombre </th>
+      <th> Precio </th>
+      <th> Cantidad</th>
+      <th> Imagen </th>
+      <th colspan=3></th>
+    </thead>
 
 <% @insumos.each do |insumo| %>
 <br />
@@ -35,16 +48,23 @@
 <td><%= insumo.nombre %></td>
 <td>$<%= insumo.precio %></td>
 <td><%= insumo.stock %></td>
+<td><%= insumo.cantidad %></td>
 <td><%= image_tag insumo.url_img,size: "100x100" %></td>
 <td><%= check_box_tag "insumo_ids[]", insumo.id, false, class: 'selectable' %></td>
 </tr>
 <% end %>
+</tr>
+</table>
 <br />
-<%=f.submit "Siguiente"%>
+<p align="right">
+<%=f.submit "Siguiente"%><br />
 <% end %>
+</p>
 <% else %>
 <div class="alert alert-danger">
  "Debes ser pasajero"
  </div>
 <% end %>
-<%=link_to "Atrás", :back %>
+<p align="left">
+<button><%=link_to "Atrás", :back %></button>
+</p>

@@ -1,6 +1,5 @@
 class Pasaje < ApplicationRecord
   belongs_to :user
-  belongs_to :comprar
   belongs_to :viaje
   has_many :join_insumos_pasajes
   has_many :insumos, through: :join_insumos_pasajes

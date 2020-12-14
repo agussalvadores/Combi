@@ -3,7 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :viajes
   has_many :pasajes
-  has_many :comprars
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
   enum role: { admin: 0, pasajero: 1, chofer: 2 }

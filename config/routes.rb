@@ -1,22 +1,26 @@
 Rails.application.routes.draw do
-  resources :comprars
-  resources :venta
 
   resources :pasajes do
     member do
       get :comprar
+      get :confirmar_compra
       post :confirmar_compra
+      get :show
+      post :show
+
+
     end
-    #collection do
-    #end
   end
+  resources :pasajes
+  get '/pasajes/show/:id', to: 'pasajes#show', as: 'show_pasaje'
+
   #get '/pasajes', to: 'pasajes#index'
   #get '/pasajes/new', to: 'pasajes#new'
    devise_for :users, controllers: {
         sessions: 'users/sessions' , registrations: 'users/registrations' , passwords: 'users/passwords',
       }
 
-
+  get 'pasajes/show/:id', to: 'pasajes#show'
   resources :users
   root to: "viajes#buscador"
   get 'viajes/buscador'

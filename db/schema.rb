@@ -10,12 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_182356) do
-
-  create_table "admins", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2020_12_14_191642) do
 
   create_table "ciudads", force: :cascade do |t|
     t.string "nombre"
@@ -82,16 +77,12 @@ ActiveRecord::Schema.define(version: 2020_12_12_182356) do
     t.integer "v_m_tarjeta"
     t.integer "v_a_tarjeta"
     t.integer "cod_t"
-    t.integer "cantidad"
     t.float "total"
+    t.string "nombre_tarjeta"
+    t.integer "dni_tarjeta"
     t.index ["comprar_id"], name: "index_pasajes_on_comprar_id"
     t.index ["user_id"], name: "index_pasajes_on_user_id"
     t.index ["viaje_id"], name: "index_pasajes_on_viaje_id"
-  end
-
-  create_table "perfils", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "searches", force: :cascade do |t|
@@ -121,6 +112,11 @@ ActiveRecord::Schema.define(version: 2020_12_12_182356) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "venta", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "viajes", force: :cascade do |t|
     t.integer "origen"
     t.integer "destino"
@@ -134,6 +130,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_182356) do
     t.integer "user_id"
     t.date "fecha_salida"
     t.date "fecha_llegada"
+    t.string "estado"
     t.index ["combi_id"], name: "index_viajes_on_combi_id"
     t.index ["user_id"], name: "index_viajes_on_user_id"
   end

@@ -1,15 +1,16 @@
 <%if current_user && current_user.role == "pasajero"%>
 <h1> Complete los datos para confirmar su compra</h1><br />
+<h1> Precio del pasaje:<%=Viaje.find(Pasaje.find(@pasaje).viaje_id).precio%><br /> </h1><br />
 <%= form_for @pasaje, html: { method: :get  } do |f| %>
 
   <div class="field">
-  <%= f.label :titular,"Nombre del pasajero" %><br />
-  <%= f.text_field :titular, required: true, placeholder: 'Nombre completo',autofocus: true%>
+  <%= f.label :nombre_tarjeta,"Nombre del titular de la tarjeta" %><br />
+  <%= f.text_field :nombre_tarjeta, required: true, placeholder: 'Como figura en la tarjeta',autofocus: true%>
 </div>
-  
+
   <div class="field">
-  <%= f.label :dni_t,"DNI del pasajero" %><br />
-  <%= f.text_field :dni_t, required: true, placeholder: 'Sin puntos',autofocus: true%>
+  <%= f.label :dni_tarjeta,"DNI del tiular de la tarjeta" %><br />
+  <%= f.text_field :dni_tarjeta, required: true, placeholder: 'Sin puntos',autofocus: true%>
 </div>
 <div class="field">
   <%= f.label :nro_t, "Numero de tarjeta" %><br />

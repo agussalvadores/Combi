@@ -1,21 +1,42 @@
-<%= form_for @pasaje,:url => { :action => :show }, html:{method: :get}  do |f| %>
-  <div class="field">
-      <%= f.label :titular %><br />
-      <%= f.email_field :titular, readonly: true %>
-    </div>
-     <div class="field">
-      <%= f.label :dni_t, "Nombre Completo"%><br />
-      <%= f.text_field :dni_t,readonly: true %>
-    </div>
-    <div class="field">
-      <%= f.label :viaje_id,"ID del viaje" %><br />
-      <%= f.text_field :viaje_id,readonly: true %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :precio,"Precio del pasaje" %><br />
-      <%= f.number_field :precio,readonly: true %>
-    </div>
+<%if current_user && current_user.id == @pasaje.user_id%>
+	<h1>Compra Exitosa</h1>
+ 	<div class="container-fluid">
+ 	<table class="table">
+ 	<thead class="thead-dark">
+ 	<tr align="center">
 
-
+		<thead>
+      <th> Titular </th>
+			<th> Origen </th>
+			<th> Destino </th>
+			<th> Fecha Salida </th>
+			<th> Hora Salida </th>
+			<th> Fecha Llegada </th>
+			<th> Hora Llegada </th>
+			<th> Precio </th>
+			<th> Insumos </th>
+			<th> Chofer </th>
+			<th colspan="9"></th>
+	</thead>
+		<td><%= Ciudad.find(Viaje.find(@pasaje.viaje_id).origen).nombre %></td>
+    <td><%= Ciudad.find(Viaje.find(@pasaje.viaje_id).destino).nombre %></td>
+    <td><%= Viaje.find(@pasaje.viaje_id).fecha_salida.strftime("%d/%m/%Y") %></td>
+    <td><%= Viaje.find(@pasaje.viaje_id).hor_salida.strftime("%H:%M")%></td>
+    <td><%= Viaje.find(@pasaje.viaje_id).fecha_llegada.strftime("%d/%m/%Y") %></td>
+    <td><%= Viaje.find(@pasaje.viaje_id).hor_llegada.strftime("%H:%M")%></td>
+    <td><%= @pasaje.precio%></td>
+    <td><%= User.find(Viaje.find(@pasaje.viaje_id).user_id).nombre%></td>
+		<% @v1=Viaje.find(@pasaje.viaje_id)%>
+		<% @v1.cant_pasajes=@v1.cant_pasajes-1%>
+		<% @v1.save%>
+    <%= @pasaje.titular %>
+	</tr>
+	</thead>
+  </table>
+  </div>
+<%else%>
+<div class="alert alert-danger">
+	"No tienes acceso suficiente"
+	</div>
 <%end%>
+<br/><%= link_to "Salir", viajes_buscador_path %>

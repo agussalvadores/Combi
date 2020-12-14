@@ -11,7 +11,9 @@ class ChoferController < ApplicationController
 		@chofer= User.find(params[:id])
 
 	end
-
+	def historial
+		@viajes=Viaje.all
+	end
 	def new
 		@chofer= User.new
 	end

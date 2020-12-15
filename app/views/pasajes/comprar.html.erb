@@ -13,7 +13,7 @@
   <%= f.text_field :dni_t, required: true, placeholder: 'Sin puntos'%>
  </div>
    <div class="field">
-    <%= f.hidden_field :precio, value: @viaje.precio %>
+    <%= f.hidden_field :precio, value: Viaje.find(@viaje).precio %>
   </div>
   <div class="field">
     <%= f.hidden_field :user_id, value: current_user.id %>

@@ -18,7 +18,7 @@
 		<td><%= ciudad.nombre %></td>
 		<td><%= ciudad.provincia %></td>
 		<td><%= ciudad.descrip %></td>
-		<td><%= image_tag ciudad.url_img,size: "200x150" %></td>
+		
 		<td>
 		<%= link_to "Editar", edit_ciudad_path(ciudad) %>
 		<%= link_to "Eliminar",ciudad, method: :delete, data: { confirm: "¿Seguro que desea eliminar la ciudad?"}%>

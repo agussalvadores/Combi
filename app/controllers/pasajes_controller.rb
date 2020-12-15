@@ -11,7 +11,7 @@ end
   end
   def confirmar_compra
     @pasajes = Pasaje.all
-    @pasaje = Pasaje.new
+    @pasaje = params[:id]
     @insumos =Insumo.all
   end
 
@@ -29,9 +29,10 @@ end
 	end
   def show
     @pasaje = Pasaje.find(params[:id])
+    @insumos = params[:insumo_ids]
   end
   private
 		def pasaje_parametros
-			params.require(:pasaje).permit([ :titular, :dni_t, :precio, :nro_t, :v_m_tarjeta, :v_a_tarjeta, :cod_t, :user_id,  :viaje_id,:cantidad,:total])
+			params.require(:pasaje).permit([ :titular, :dni_t, :precio, :nro_t, :v_m_tarjeta, :v_a_tarjeta, :cod_t, :user_id,  :viaje_id,:cantidad,:total,:insumo_ids[]])
 		end
 end

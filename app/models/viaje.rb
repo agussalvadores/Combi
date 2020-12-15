@@ -4,4 +4,5 @@ class Viaje < ApplicationRecord
 	belongs_to :combi
 	belongs_to :user
 	has_many :pasajes
+
 end

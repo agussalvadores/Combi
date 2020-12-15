@@ -1,9 +1,38 @@
+<<<<<<< HEAD
+<%= form_for @pasaje,:url => { :action => :show }, html:{method: :get}  do |f| %>
+  <div class="field">
+      <%= f.label :titular %><br />
+      <%= f.email_field :titular, readonly: true %>
+    </div>
+     <div class="field">
+      <%= f.label :dni_t, "Nombre Completo"%><br />
+      <%= f.text_field :dni_t,readonly: true %>
+    </div>
+    <div class="field">
+      <%= f.label :viaje_id,"ID del viaje" %><br />
+      <%= f.text_field :viaje_id,readonly: true %>
+    </div>
+    <div>
+    <%= f.label :origen,"Origen" %>
+    <%= f.text_field :origen, readonly: true%>
+    </div>
+    <div>
+    <%= f.label :destino,"Destino" %>
+     <%= f.text_field :destino, readonly: true%>
+   </div>
+    
+    <div class="field">
+      <%= f.label :precio,"Precio del pasaje" %><br />
+      <%= f.number_field :precio,readonly: true %>
+    </div>
+=======
 <%if current_user && current_user.id == @pasaje.user_id%>
 	<h1>Compra Exitosa</h1>
  	<div class="container-fluid">
  	<table class="table">
  	<thead class="thead-dark">
  	<tr align="center">
+>>>>>>> 99d1cee22340b1ba77b2840d4a71af9149640525
 
 		<thead>
       <th> Titular </th>

@@ -6,19 +6,21 @@ class CiudadsController < ApplicationController
     end
 
     def new
-        @ciudad = Ciudad.create
+        @ciudad = Ciudad.new
 
     end
 
 
 	def create
-		@ciudad =Ciudad.create(ciudad_parametros)
-		if @ciudad.save
-			redirect_to ciudades_path, notice: "Ciudad creada correctamente"
-		else
-			render :new
-		end
-	end
+        @ciudad =Ciudad.create(ciudad_parametros)
+          	if @ciudad.save
+            	redirect_to ciudades_path, notice:"Ciudad creada con éxito"
+            else 
+             redirect_to ciudades_new_path, notice: "La ciudad ya esta registrada"	
+        	end
+    end
+
+
 
 	def edit
 		@ciudad = Ciudad.find(params[:id])
@@ -29,7 +31,7 @@ class CiudadsController < ApplicationController
 		if @ciudad.update(ciudad_parametros)
 			redirect_to ciudades_path, notice: "Datos actualizados correctamente"
 		else
-			render :edit
+			redirect_to edit_ciudad_path, notice: "La ciudad ya esta registrada"	
 		end
 	end
 

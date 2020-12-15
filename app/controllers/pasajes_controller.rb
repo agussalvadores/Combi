@@ -34,9 +34,18 @@ end
 	end
   def show
     @pasaje = Pasaje.find(params[:id])
+    @insumos = params[:insumo_ids]
   end
   private
 		def pasaje_parametros
+<<<<<<< HEAD
 			params.require(:pasaje).permit([ :titular, :dni_t, :precio, :nro_t, :v_m_tarjeta, :v_a_tarjeta, :cod_t, :user_id,  :viaje_id,:cantidad,:total,:dni_tarjeta,:nombre_tarjeta,:insumos])
+=======
+<<<<<<< HEAD
+			params.require(:pasaje).permit([ :titular, :dni_t, :precio, :nro_t, :v_m_tarjeta, :v_a_tarjeta, :cod_t, :user_id,  :viaje_id,:cantidad,:total,:insumo_ids[]])
+=======
+			params.require(:pasaje).permit([ :titular, :dni_t, :precio, :nro_t, :v_m_tarjeta, :v_a_tarjeta, :cod_t, :user_id,  :viaje_id,:cantidad,:total,:dni_tarjeta,:nombre_tarjeta])
+>>>>>>> 99d1cee22340b1ba77b2840d4a71af9149640525
+>>>>>>> 0eba93a8f5ac831334fae188f6ff594e4bf90797
 		end
 end

@@ -1,5 +1,5 @@
 <%if current_user && current_user.role == "admin"%>
-<%= form_for @ciudad do |f| %>
+<%= form_for @ciudad, :url => { :action => :create } do |f| %>
 
     <div>
         <%= f.label :nombre, "Nombre" %>

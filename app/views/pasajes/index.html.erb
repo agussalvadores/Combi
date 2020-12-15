@@ -1,9 +1,9 @@
+<% if current_user.role=="pasajero" %>
 	<h1> Listado de viajes</h1>
  	<div class="container-fluid">
  	<table class="table">
  	<thead class="thead-dark">
  	<tr align="center">
-
 		<thead>
       <th> Titular </th>
 			<th> Origen </th>
@@ -28,5 +28,41 @@
     <td><%= Viaje.find(pasaje.viaje_id).hor_llegada.strftime("%H:%M")%></td>
     <td><%= pasaje.precio%></td>
     <td><%= Viaje.find(pasaje.viaje_id).estado%></td>
-	<% end %>
-<br/> <%= link_to "Atrás", viajes_buscador_path %>
+	<%end%>
+	<br/> <%= link_to "Atrás", viajes_buscador_path %>
+	<%end%>
+	<% if current_user.role=="chofer" %>
+	<h1> Listado de viajes</h1>
+ 	<div class="container-fluid">
+ 	<table class="table">
+ 	<thead class="thead-dark">
+ 	<tr align="center">
+	<thead>
+		<th> Origen </th>
+		<th> Destino </th>
+		<th> Fecha Salida </th>
+		<th> Hora Salida </th>
+		<th> Fecha Llegada </th>
+		<th> Hora Llegada </th>
+		<th> Precio </th>
+		<th> Combi </th>
+		<th> Estado </th>
+		<th colspan="9"></th>
+</thead>
+<% @viajes.each do |viaje| %>
+<tr>
+	<td><%= Ciudad.find(viaje.origen).nombre %></td>
+	<td><%= Ciudad.find(viaje.destino).nombre %></td>
+	<td><%= viaje.fecha_salida.strftime("%d/%m/%Y") %></td>
+	<td><%= viaje.hor_salida.strftime("%H:%M")%></td>
+	<td><%= viaje.fecha_llegada.strftime("%d/%m/%Y") %></td>
+	<td><%= viaje.hor_llegada.strftime("%H:%M")%></td>
+	<td><%= viaje.precio%></td>
+	<td><%= viaje.combi.patente%></td>
+	<td><%= viaje.estado%></td>
+	<td><%= link_to "Modificar Estado", edit_viaje_path(viaje)%></td>
+	</tr>
+</table>
+<%end%>
+	<br/> <%= link_to "Atrás", viajes_buscador_path %>
+<%end%>

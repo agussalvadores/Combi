@@ -1,6 +1,10 @@
 class PasajesController < ApplicationController
 def index
-  @pasajes = Pasaje.where(user_id: current_user.id)
+  if current_user.role=="pasajero"
+    @pasajes = Pasaje.where(user_id: current_user.id)
+  else
+    @viajes = Viaje.where(user_id: current_user.id)
+  end
 end
 
   def comprar
@@ -13,7 +17,7 @@ end
   def confirmar_compra
     @pasajes = Pasaje.all
     @pasaje = params[:id]
-    @insumos =Insumo.all
+    @insumos =params[:insumos]
   end
 
   def new
@@ -33,6 +37,6 @@ end
   end
   private
 		def pasaje_parametros
-			params.require(:pasaje).permit([ :titular, :dni_t, :precio, :nro_t, :v_m_tarjeta, :v_a_tarjeta, :cod_t, :user_id,  :viaje_id,:cantidad,:total,:dni_tarjeta,:nombre_tarjeta])
+			params.require(:pasaje).permit([ :titular, :dni_t, :precio, :nro_t, :v_m_tarjeta, :v_a_tarjeta, :cod_t, :user_id,  :viaje_id,:cantidad,:total,:dni_tarjeta,:nombre_tarjeta,:insumos])
 		end
 end

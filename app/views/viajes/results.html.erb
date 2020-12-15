@@ -40,9 +40,13 @@
     <%if current_user && current_user.role == "pasajero"%>
     <td><%=link_to "Comprar", comprar_pasaje_path(viaje.id),class:"btn btn-primary"%></td>
     <%else%>
+    <%if current_user && current_user.role == "chofer"%>
+    <td><%=link_to "Vender pasaje", comprar_pasaje_path(viaje.id),class:"btn btn-primary"%></td>
+    <%else%>
     <div class="alert alert-danger">
     	"Debes ser usuario pasajero para comprar"
     	</div>
+    <%end%>
     <%end%>
   <%else%>
     <td><%=link_to "Comprar", new_user_session_path, notice: "Debe iniciar sesion o registrarse para comprar un viaje", class:"btn btn-primary"%></td>

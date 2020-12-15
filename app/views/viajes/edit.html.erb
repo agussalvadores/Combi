@@ -47,8 +47,20 @@
   </div>
 <% end %>
 <%else%>
-<div class="alert alert-danger">
-"No tienes acceso suficiente"
-</div>
+	<%if current_user && current_user.role == "chofer"%>
+	<%= form_for @viaje do |f| %>
+	<div class="field">
+	 <%= f.label :estado,"Estado del viaje" %><br />
+	 <%= f.select :estado, options_for_select(Viaje.estados) %>
+	</div>
+	<div class="Actions">
+		 <%= f.submit "Guardar Cambios"%>
+	 </div>
+	 <%end%>
+	<%else%>
+	<div class="alert alert-danger">
+		"No tienes acceso suficiente"
+	</div>
+	<%end%>
 <%end%>
 <br/> <%= link_to "Atrás", viajes_path %>

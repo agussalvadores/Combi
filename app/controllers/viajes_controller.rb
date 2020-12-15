@@ -34,7 +34,11 @@ class ViajesController < ApplicationController
   def update
     @viaje = Viaje.find(params[:id])
     if @viaje.update(viaje_parametros)
-      redirect_to viajes_path ,notice:"Viaje actualizado correctamente"
+      if current_user.role=="admin"
+        redirect_to viajes_path ,notice:"Viaje actualizado correctamente"
+      else
+        redirect_to pasajes_index_path ,notice:"Viaje actualizado correctamente"
+      end
     else
       render :edit
     end

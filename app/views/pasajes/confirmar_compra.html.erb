@@ -1,8 +1,8 @@
-<%if current_user && current_user.role == "pasajero"%>
-<h1> Complete los datos para confirmar su compra</h1><br />
-<h1> Precio del pasaje:<%=Viaje.find(Pasaje.find(@pasaje).viaje_id).precio%><br /> </h1><br />
+<%if current_user && current_user.role != "admin"%>
+<h1> Precio del pasaje:<%=Viaje.find(Pasaje.find(@pasaje).viaje_id).precio%></h1><br />
 <%= form_for @pasaje, html: { method: :get  } do |f| %>
-
+  <%if current_user && current_user.role == "pasajero"%>
+  <h1> Complete los datos para confirmar su compra</h1><br />
   <div class="field">
   <%= f.label :nombre_tarjeta,"Nombre del titular de la tarjeta" %><br />
   <%= f.text_field :nombre_tarjeta, required: true, placeholder: 'Como figura en la tarjeta',autofocus: true%>
@@ -26,7 +26,7 @@
     <%= f.label :cod_t, "Codigo de seguridad" %><br />
     <%= f.text_field :cod_t, placeholder: '3 digitos en el dorso',required: true %>
     </div><br />
-
+<%end%>
  <div class="actions">
     <%= link_to "Confirmar compra", show_pasaje_path,class: ' btn btn-outline-info'%>
  </div>

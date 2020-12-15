@@ -4,10 +4,11 @@
   <%= f.label :patente,"Patente" %><br />
   <%= f.text_field :patente,required: true %>
 </div>
+<div class="field">
  <%= f.label :tipo,"Tipo de asiento" %><br />
  <%= f.select :tipo,
        options_for_select(Combi.tipos) %>
-
+</div>
    <div class="field">
    <%= f.label :cant_asientos, "Cantidad de asientos" %><br />
   <%= f.number_field :cant_asientos, required: true %>

@@ -18,6 +18,7 @@
 			<th> Chofer </th>
 			<th colspan="9"></th>
 	</thead>
+	<td><%= @pasaje.titular %></td>
 		<td><%= Ciudad.find(Viaje.find(@pasaje.viaje_id).origen).nombre %></td>
     <td><%= Ciudad.find(Viaje.find(@pasaje.viaje_id).destino).nombre %></td>
     <td><%= Viaje.find(@pasaje.viaje_id).fecha_salida.strftime("%d/%m/%Y") %></td>
@@ -29,7 +30,7 @@
 		<% @v1=Viaje.find(@pasaje.viaje_id)%>
 		<% @v1.cant_pasajes=@v1.cant_pasajes-1%>
 		<% @v1.save%>
-    <%= @pasaje.titular %>
+
 	</tr>
 	</thead>
   </table>

@@ -19,9 +19,6 @@
     <img src="<%= image_url ('combi.png') %>" width="100" height="100"/>
     </a>
       <%if user_signed_in? %>
-          <%= link_to 'Editar Perfil',edit_user_registration_path , class: 'btn btn-link' %>
-          <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
-          <%= link_to ' Buscar viaje', viajes_buscador_path, class: 'btn btn-link' %>
           <% if current_user.role == "admin"%>
             <%= link_to 'Administrar choferes',chofer_index_path , class: 'btn btn-link' %>
             <%= link_to 'Administrar viajes',viajes_path , class: 'btn btn-link' %>
@@ -31,6 +28,10 @@
           <% else %>
             <%= link_to 'Historial',pasajes_index_path , class: 'btn btn-link' %>
           <%end%>
+
+          <%= link_to 'Editar Perfil',edit_user_registration_path , class: 'btn btn-link' %>
+          <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+
           <% else %>
                 <%= link_to "Iniciar sesión",new_user_session_path, class: 'btn btn-default'  %>
                 <%= link_to "Registrarse",new_user_registration_path, class: 'btn btn-default' %>

@@ -42,8 +42,12 @@ class ViajesController < ApplicationController
 
   def delete
     @viaje = Viaje.find(params[:id])
-    @viaje.destroy
-    redirect_to viajes_path, notice: "Viaje eliminado correctamente"
+    if @viaje.pasajes.empty?
+      @viaje.destroy
+      redirect_to viajes_path, notice: "Viaje eliminado correctamente"
+    else
+      redirect_to viajes_path, notice: "El viaje no se puede eliminar debido a que ya tiene pasajes vendidos"
+    end
   end
    private
     def set_viaje
@@ -52,7 +56,7 @@ class ViajesController < ApplicationController
 
   private
     def viaje_parametros
-      params.require(:viaje).permit(:origen, :destino, :hor_salida, :hor_llegada, :precio, :cant_pasajes, :combi_id, :user_id, :fecha_salida, :fecha_llegada)
+      params.require(:viaje).permit(:origen, :destino, :hor_salida, :hor_llegada, :precio, :cant_pasajes, :combi_id, :user_id, :fecha_salida, :fecha_llegada, :estado)
     end
 
 end

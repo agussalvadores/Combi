@@ -21,12 +21,11 @@
   <div class="field">
     <%= f.hidden_field :viaje_id, value: @viaje %>
   </div>
- 
+
   <div class="field">
     <%= f.hidden_field :nro_t, value: 9000000000000000%>
-  </div>
-  <div class="field">
     <%= f.hidden_field :cod_t, value: 900%>
+    <%= f.hidden_field :dni_tarjeta, value: 80000000%>
   </div>
 <br />
 <h1 class="_70d32459db22475c3f25d5917f32a078-scss"> Paso 2: SELECCIONE LOS SNACKS PARA SU VIAJE</h1>
@@ -53,7 +52,6 @@
 <td><%= check_box_tag "insumo_ids[]", insumo.id, false, class: 'selectable' %></td>
 </tr>
 <% end %>
-</tr>
 </table>
 <br />
 <p align="right">

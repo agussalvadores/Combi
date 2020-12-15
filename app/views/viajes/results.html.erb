@@ -19,6 +19,7 @@
   <th> </th>
 </table>
 <% @viajes.each do |viaje| %>
+<%if viaje.cant_pasajes > 0%>
 <table class="table table-hover">
   <td><%=viaje.fecha_salida.strftime("%d/%m/%Y")%></td>
   <%if viaje.hor_salida.nil?%>
@@ -51,4 +52,5 @@
 
 
 </div>
+<%end%>
 <%end%>

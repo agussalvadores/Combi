@@ -2,18 +2,16 @@ Rails.application.routes.draw do
 
   resources :pasajes do
     member do
+      get :index
+      post:index
       get :comprar
       get :confirmar_compra
       post :confirmar_compra
       get :show
-      post :show
-
-
     end
   end
-  resources :pasajes
   get '/pasajes/show/:id', to: 'pasajes#show', as: 'show_pasaje'
-
+  get '/pasajes/index', to: 'pasajes#index'
   #get '/pasajes', to: 'pasajes#index'
   #get '/pasajes/new', to: 'pasajes#new'
    devise_for :users, controllers: {

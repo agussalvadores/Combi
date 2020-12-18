@@ -1,0 +1,17 @@
+<%if current_user && current_user.id == @pasaje.user_id%>
+  <h1>Viaje Reprogramado correctamente</h1>
+  <% @p1=Pasaje.find(@pasaje.id)%>
+  <% @v1=Viaje.find(@p1.viaje_id)%>
+  <% @v1.cant_pasajes=@v1.cant_pasajes+1%>
+  <% @v1.save%>
+  <% @p1.viaje_id=@viaje.id%>
+  <% @p1.save%>
+  <% @v1=Viaje.find(@p1.viaje_id)%>
+  <% @v1.cant_pasajes=@v1.cant_pasajes-1%>
+  <% @v1.save%>
+<%else%>
+  <div class="alert alert-danger">
+    "No tienes acceso suficiente"
+  </div>
+<%end%>
+<td><%=link_to "Aceptar", pasajes_index_path,class:"btn btn-primary"%></td>

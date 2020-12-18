@@ -18,6 +18,7 @@
 			<th> Pasajes </th>
 			<th> Combi </th>
 			<th> Chofer </th>
+			<th> Estado </th>
 			<th colspan="9"></th>
 	</thead>
 	<% @viajes.each do |viaje| %>
@@ -40,6 +41,7 @@
 		<td><%= viaje.cant_pasajes %></td>
 		<td><%= Combi.find(viaje.combi_id).patente %></td>
 		<td><%= User.find(viaje.user_id).nombre %></td>
+		<td><%= viaje.estado%></td>
 		<td>
 		<%= link_to "Editar", edit_viaje_path(viaje) %>
 		<%= link_to "Eliminar", viaje, method: :delete, data: { confirm: "¿Seguro que desea eliminar el viaje?"}%>

@@ -1,6 +1,5 @@
-
 <%if current_user && current_user.id == @pasaje.user_id%>
-	<h1>Compra Exitosa</h1>
+	<h1>Pasaje cancelado correctamente</h1>
  	<div class="container-fluid">
  	<table class="table">
  	<thead class="thead-dark">
@@ -34,15 +33,16 @@
 		</td>
     <td><%= User.find(Viaje.find(@pasaje.viaje_id).user_id).nombre%></td>
 		<% @v1=Viaje.find(@pasaje.viaje_id)%>
-		<% @v1.cant_pasajes=@v1.cant_pasajes-1%>
+		<% @v1.cant_pasajes=@v1.cant_pasajes+1%>
 		<% @v1.save%>
 
     <% @pasaje.insumos.each do |insumo| %>
     <%@i1=Insumo.find(insumo.id)%>
-    <%@i1.stock=@i1.stock-1%>
+    <%@i1.stock=@i1.stock+1%>
     <%@i1.save%>
     <%end%>
-
+    <%@pasaje.estado="Cancelado"%>
+    <%@pasaje.save%>
 	</tr>
 	</thead>
   </table>
@@ -52,4 +52,4 @@
 	"No tienes acceso suficiente"
 	</div>
 <%end%>
-<br/><%= link_to "Salir", viajes_buscador_path %>
+<br/><%= link_to "Listo", pasajes_index_path %>

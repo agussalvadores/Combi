@@ -14,7 +14,8 @@
 			<th> Hora Llegada </th>
       <th> Insumos </th>
       <th> Precio </th>
-      <th> Estado </th>
+      <th> Estado del viaje</th>
+			<th> Estado del pasaje</th>
 			<th colspan="9"></th>
 	</thead>
 	<% @pasajes.each do |pasaje| %>
@@ -26,8 +27,20 @@
     <td><%= Viaje.find(pasaje.viaje_id).hor_salida.strftime("%H:%M")%></td>
     <td><%= Viaje.find(pasaje.viaje_id).fecha_llegada.strftime("%d/%m/%Y") %></td>
     <td><%= Viaje.find(pasaje.viaje_id).hor_llegada.strftime("%H:%M")%></td>
-    <td><%= pasaje.precio%></td>
+		<% @insumos=pasaje.insumos%>
+		<td><% @insumos.each do |insumo| %>
+			<%=insumo.nombre%>
+		<%end%>
+		</td>
+		<td><%= pasaje.precio%></td>
     <td><%= Viaje.find(pasaje.viaje_id).estado%></td>
+		<td><%= pasaje.estado%></td>
+		<%if pasaje.estado !="Cancelado" && Viaje.find(pasaje.viaje_id).fecha_salida > (2.days.after.to_date) %>
+			<td><%= link_to "Reprogramar viaje", reprogramar_pasaje_path(pasaje.id), data:{confirm:"SEGURO QUE DESEA REPROGRAMAR EL VIAJE" }%></td>
+		<%end%>
+		<%if pasaje.estado !="Cancelado" && Viaje.find(pasaje.viaje_id).estado == "Pendiente"%>
+			<td><%= link_to "Cancelar viaje", cancelacion_pasaje_path(pasaje.id), data:{confirm:"ADVERTENCIA: USTED NO PODRA REPROGRAMAR EL VIAJE. ¿DESEA CANCELARLO?" }%></td>
+		<%end%>
 	<%end%>
 	<br/> <%= link_to "Atrás", viajes_buscador_path %>
 	<%end%>
@@ -62,7 +75,6 @@
 	<td><%= viaje.estado%></td>
 	<td><%= link_to "Modificar Estado", edit_viaje_path(viaje)%></td>
 	</tr>
-</table>
 <%end%>
 	<br/> <%= link_to "Atrás", viajes_buscador_path %>
 <%end%>

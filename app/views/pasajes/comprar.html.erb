@@ -24,6 +24,7 @@
 
   <div class="field">
     <%= f.hidden_field :nro_t, value: 9000000000000000%>
+    <%= f.hidden_field :estado, value: "Activo"%>
     <%= f.hidden_field :cod_t, value: 900%>
     <%= f.hidden_field :dni_tarjeta, value: 80000000%>
   </div>
@@ -36,20 +37,21 @@
     <thead>
       <th> Nombre </th>
       <th> Precio </th>
-      <th> Cantidad</th>
       <th> Imagen </th>
+      <th> Seleccionar</th>
       <th colspan=3></th>
     </thead>
 
-<% @insumos.each do |insumo| %>
+<%= f.collection_check_boxes :insumo_ids, @insumos, :id, :nombre do |b| %>
 <br />
 <tr>
-<td><%= insumo.nombre %></td>
-<td>$<%= insumo.precio %></td>
-<td><%= insumo.stock %></td>
-<td><%= insumo.cantidad %></td>
-<td><%= image_tag insumo.url_img,size: "100x100" %></td>
-<td><%= check_box_tag "insumo_ids[]", insumo.id, false, class: 'selectable' %></td>
+<td><%= b.object.nombre %></td>
+<td>$<%= b.object.precio %></td>
+<td><%= image_tag b.object.url_img,size: "100x100" %></td>
+<td class="collection-check-box">
+     <%= b.check_box %>
+     <%= b.label %>
+   </td>
 </tr>
 <% end %>
 </table>

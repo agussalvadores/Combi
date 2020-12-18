@@ -12,27 +12,27 @@
 </div>
 <div>
 	<%= f.label :fecha_salida,"Fecha de salida" %>
-	<%= f.date_field :fecha_salida %>
+	<%= f.date_field :fecha_salida, required: true  %>
 </div>
 <div>
 	<%= f.label :hor_salida,"Hora de salida"%>
-	<%=	f.time_field :hor_salida %>
+	<%=	f.time_field :hor_salida , required: true %>
 </div>
 <div>
 	<%= f.label :fecha_llegada,"Fecha de llegada" %>
-	<%= f.date_field :fecha_llegada %>
+	<%= f.date_field :fecha_llegada, required: true  %>
 </div>
 <div>
 	<%= f.label :hor_llegada,"Hora de llegada" %>
-	<%= f.time_field :hor_llegada %>
+	<%= f.time_field :hor_llegada, required: true  %>
 </div>
 <div>
 	<%= f.label :precio, "Precio" %>
-	<%= f.number_field :precio %>
+	<%= f.number_field :precio, required: true  %>
 </div>
 <div>
 	<%= f.label :cant_pasajes,"Pasajes disponibles" %>
-	<%= f.number_field :cant_pasajes %>
+	<%= f.number_field :cant_pasajes, required: true  %>
 </div>
 <div>
 	<%= f.label :combi,"Combi" %>
@@ -46,6 +46,7 @@
    	<%= f.submit "Guardar Cambios"%>
   </div>
 <% end %>
+<br/> <%= link_to "Atrás", viajes_path %>
 <%else%>
 	<%if current_user && current_user.role == "chofer"%>
 	<%= form_for @viaje do |f| %>
@@ -56,6 +57,7 @@
 	<div class="Actions">
 		 <%= f.submit "Guardar Cambios"%>
 	 </div>
+	 <br/> <%= link_to "Atrás", pasajes_index_path %>
 	 <%end%>
 	<%else%>
 	<div class="alert alert-danger">
@@ -63,4 +65,3 @@
 	</div>
 	<%end%>
 <%end%>
-<br/> <%= link_to "Atrás", viajes_path %>

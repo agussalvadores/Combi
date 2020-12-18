@@ -7,6 +7,12 @@ Rails.application.routes.draw do
       get :comprar
       get :confirmar_compra
       post :confirmar_compra
+      get :cancelacion
+      post :cancelacion
+      get :reprogramar
+      post :reprogramar
+      get :confirmar_reprogramacion
+      post :confirmar_reprogramacion
       get :show
     end
   end

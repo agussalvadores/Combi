@@ -1,0 +1,43 @@
+<%if current_user && current_user.role == "pasajero"%>
+  <h1>Seleccione viaje</h1>
+  <div class="container-fluid">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <th> Fecha Salida </th>
+        <th> Hora Salida </th>
+        <th> Fecha Llegada </th>
+        <th> Hora Llegada </th>
+        <th> Precio </th>
+        <th> Pasajes </th>
+        <th> Combi </th>
+        <th colspan="7"></th>
+      </thead>
+    </div>
+    <% @viajes.each do |viaje| %>
+    <tr>
+      <%if viaje.cant_pasajes > 0 && @viaje.origen==viaje.origen && @viaje.destino==viaje.destino && viaje.estado=="Pendiente" && @viaje.id!=viaje.id%>
+        <td><%=viaje.fecha_salida.strftime("%d/%m/%Y")%></td>
+        <%if viaje.hor_salida.nil?%>
+          <td><%="0:0"%></td>
+        <%else%>
+          <td><%=viaje.hor_salida.strftime("%H:%M")%></td>
+        <%end%>
+        <td><%= viaje.fecha_llegada.strftime("%d/%m/%Y")%></td>
+        <%if viaje.hor_llegada.nil?%>
+          <td><%="0:0"%></td>
+        <%else%>
+          <td><%= viaje.hor_llegada.strftime("%H:%M")%></td>
+        <%end%>
+        <td>$<%=viaje.precio %></td>
+        <td><%=viaje.cant_pasajes%></td>
+        <td><%=viaje.combi.tipo%></td>
+        <td><%=link_to "Seleccionar", confirmar_reprogramacion_pasaje_path(:viaje_id => viaje.id, :id => @pasaje.id),class:"btn btn-primary"%></td>
+        </tr>
+      <%end%>
+    <%end%>
+    <td><%=link_to "Cancelar", pasajes_index_path,class:"btn btn-primary"%></td>
+  <%else%>
+    <div class="alert alert-danger">
+      "No tienes acceso suficiente"
+    </div>
+<%end%>

@@ -12,27 +12,27 @@
 </div>
 <div>
 	<%= f.label :fecha_salida,"Fecha de salida" %>
-	<%= f.date_field :fecha_salida %>
+	<%= f.date_field :fecha_salida, required: true%>
 </div>
 <div>
 	<%= f.label :hor_salida,"Hora de salida"%>
-	<%=	f.time_field :hor_salida %>
+	<%=	f.time_field :hor_salida, required: true %>
 </div>
 <div>
 	<%= f.label :fecha_llegada,"Fecha de llegada" %>
-	<%= f.date_field :fecha_llegada %>
+	<%= f.date_field :fecha_llegada, required: true %>
 </div>
 <div>
 	<%= f.label :hor_llegada,"Hora de llegada" %>
-	<%= f.time_field :hor_llegada %>
+	<%= f.time_field :hor_llegada, required: true %>
 </div>
 <div>
 	<%= f.label :precio, "Precio" %>
-	<%= f.number_field :precio %>
+	<%= f.number_field :precio, required: true %>
 </div>
 <div>
 	<%= f.label :cant_pasajes,"Pasajes disponibles" %>
-	<%= f.number_field :cant_pasajes %>
+	<%= f.number_field :cant_pasajes, required: true %>
 </div>
 <div>
 	<%= f.hidden_field :estado, value: "Pendiente"%>
@@ -43,7 +43,7 @@
 </div>
 <div>
 	<%= f.label :user,"Chofer" %>
-	<%= f.collection_select(:user_id, User.where(role:2), :id, :nombre, :prompt => 'Elegir Chofer') %>
+	<%= f.collection_select(:user_id, User.where(role:2), :id, :nombre, :prompt => 'Elegir Chofer')%>
 </div>
  <div class="Actions">
    	<%= f.submit "Registrar Viaje"%>

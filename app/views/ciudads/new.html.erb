@@ -3,19 +3,19 @@
 
     <div>
         <%= f.label :nombre, "Nombre" %>
-        <%= f.text_field :nombre %>
+        <%= f.text_field :nombre, required: true  %>
     </div>
     <div>
         <%= f.label :provincia, "Provincia" %>
-        <%= f.text_field :provincia %>
+        <%= f.text_field :provincia , required: true %>
     </div>
     <div>
         <%= f.label :descrip, "Descripcion" %>
-        <%= f.text_field :descrip %>
+        <%= f.text_field :descrip, required: true  %>
     </div>
     <div>
         <%= f.label :url_img, "URL de la imagen" %>
-        <%= f.text_field :url_img %>
+        <%= f.text_field :url_img, required: true  %>
     </div>
     <div>
         <%= f.submit "Registrar ciudad" %>

@@ -31,8 +31,12 @@ class InsumosController < ApplicationController
 
 	def delete
 		@insumo = Insumo.find(params[:id])
-		@insumo.destroy
-		redirect_to insumos_path, notice: "Insumo eliminado correctamente"
+		if @insumo.pasajes.empty?
+			@insumo.destroy
+			redirect_to insumos_path, notice: "Insumo eliminado correctamente"
+		else
+				redirect_to insumos_path, notice: "El insumo no se puede eliminar debido a que figura en uno o mas pasajes, si desea dejar de venderlos setee la cantidad en 0"
+		end
 	end
 
 	private
